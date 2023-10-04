@@ -24,9 +24,9 @@ function SplashScreen(): ReactElement {
   }, [isBtnClicked]);
 
   return (
-    <div className={styles.container}>
+    <div className={`${styles.container} ${isBtnClicked && styles.animationContainer}`}>
       {/* Header */}
-      <div className={`${styles.header} ${isBtnClicked && styles.animationHeader}`}>
+      <div className={styles.header}>
         <h1>{paniniStatus === "completed" ? "Panini ordered" : "Panini Creator"}</h1>
         <small className={styles.btn} onClick={() => setBtnClicked(!isBtnClicked)}>
           {paniniStatus === "completed" ? "Start again" : "Begin"}
