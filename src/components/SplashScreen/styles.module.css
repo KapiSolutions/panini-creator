@@ -10,6 +10,7 @@
   max-width: 100vw;
   max-height: 100vh;
   overflow: hidden;
+  z-index: 100;
 }
 
 .header {
@@ -21,7 +22,7 @@
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  z-index: 100;
+  z-index: 101;
 }
 h1 {
   margin: 0;
@@ -75,16 +76,16 @@ h1 {
 
 /* Animations */
 /* Header */
-@keyframes header {
-  80% {
+@keyframes container {
+  50% {
     opacity: 1;
   }
   100% {
     opacity: 0;
   }
 }
-.animationHeader {
-  animation: header var(--animationOptions);
+.animationContainer {
+  animation: container var(--animationOptions);
 }
 
 /* Main Circle */
