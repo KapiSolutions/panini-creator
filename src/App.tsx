@@ -1,17 +1,18 @@
 import React from "react";
-import SplashScreen from "./components/SplashScreen";
+import SplashScreen from "./components/SplashScreen/SplashScreen";
 import usePaniniStore from "./stores/usePaniniStore";
+import FormContainer from "./components/FormContainer/FormContainer";
+import FormHeader from "./components/FormHeader/FormHeader";
 
 function App() {
   const { paniniStatus } = usePaniniStore();
   return (
     <div className="main">
-      {paniniStatus !== "started" && <SplashScreen />
-      
-      }
-      <div style={{zIndex:0, position: "absolute", top: 0, left:0, width:"100vw", height:"100vh", display: "flex", justifyContent: "center", alignItems: "center"}}>
-      <h1>started</h1>
-      </div>
+      {paniniStatus !== "started" && <SplashScreen />}
+
+      <FormContainer>
+        <FormHeader />
+      </FormContainer>
     </div>
   );
 }
