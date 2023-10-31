@@ -1,5 +1,5 @@
 import React, { useState, useEffect, ReactElement } from "react";
-import styles from "./styles.module.css";
+import styles from "./SplashScreen.module.css";
 import usePaniniStore from "../../stores/usePaniniStore";
 
 function SplashScreen(): ReactElement {
