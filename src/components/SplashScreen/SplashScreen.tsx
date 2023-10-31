@@ -1,9 +1,10 @@
 import React, { useState, useEffect, ReactElement } from "react";
-import styles from "./styles.module.css";
+import styles from "./SplashScreen.module.css";
+import usePaniniStore from "../../stores/usePaniniStore";
 
 function SplashScreen(): ReactElement {
   const [isBtnClicked, setBtnClicked] = useState<Boolean>(false);
-  const [isAnimationFinished, setAnimationFinished] = useState<Boolean>(false);
+  const { paniniStatus, setPaniniStatus } = usePaniniStore();
   const animationTime = 2400; // 2.4s animation duration
 
   useEffect(() => {
@@ -11,11 +12,10 @@ function SplashScreen(): ReactElement {
 
     if (isBtnClicked) {
       timeout = setTimeout(() => {
-        setAnimationFinished(true);
+        setPaniniStatus("started");
       }, animationTime);
     }
 
-    // Clean up the timeout
     return () => {
       if (timeout) {
         clearTimeout(timeout);
@@ -24,12 +24,12 @@ function SplashScreen(): ReactElement {
   }, [isBtnClicked]);
 
   return (
-    <div className={styles.container} style={isAnimationFinished ? { display: "none" } : { display: "flex" }}>
+    <div className={`${styles.container} ${isBtnClicked && styles.animationContainer}`}>
       {/* Header */}
-      <div className={`${styles.header} ${isBtnClicked && styles.animationHeader}`}>
-        <h1>Panini Creator</h1>
+      <div className={styles.header}>
+        <h1>{paniniStatus === "completed" ? "Panini ordered" : "Panini Creator"}</h1>
         <small className={styles.btn} onClick={() => setBtnClicked(!isBtnClicked)}>
-          Begin
+          {paniniStatus === "completed" ? "Start again" : "Begin"}
         </small>
       </div>
 

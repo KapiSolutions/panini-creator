@@ -1,0 +1,65 @@
+.container {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  width: 100%;
+}
+
+h1 {
+  font-family: "Instrument Serif";
+  font-size: 36px;
+  font-style: normal;
+  font-weight: 400;
+}
+
+button {
+  border: none;
+  background-color: #fff;
+  padding: 14px 20px 14px 15px;
+  display: inline-flex;
+  gap: 6px;
+  font-family: "Oxygen Mono";
+  font-size: 12px;
+  font-style: normal;
+  font-weight: 400;
+  text-transform: uppercase;
+  cursor: pointer;
+}
+
+ /* Square with a single dot in the center
+ .square {
+    width: 6.7px;
+    height: 6.7px;
+    position: relative;
+    border: 0.5px solid #000;
+}
+
+.dot1 {
+    width: 1px;
+    height: 1px;
+    background-color: #000;
+    border-radius: 50%;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+}
+
+.dot2_1, .dot2_2 {
+    width: 1px;
+    height: 1px;
+    background-color: #000;
+    border-radius: 50%;
+    position: absolute;
+}
+
+.dot2_1 {
+    top: 20%;
+    left: 20%;
+}
+
+.dot2_2 {
+    top: 80%;
+    left: 80%;
+    transform: translate(-80%, -80%);
+} */
