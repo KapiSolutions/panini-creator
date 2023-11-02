@@ -1,0 +1,49 @@
+.container {
+  width: 250px;
+  height: 35px;
+  border: 0.5px solid #000;
+  background-color: #fff;
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-transform: uppercase;
+  font-family: "Oxygen Mono";
+  font-size: 12px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: normal;
+  cursor: pointer;
+}
+
+.arrow {
+  position: absolute;
+  right: 14px;
+  transition: transform 0.3s;
+}
+
+.rotate {
+  transform: rotate(180deg);
+}
+
+.itemsContainer {
+  display: flex;
+  flex-direction: column;
+  position: absolute;
+  top: 34px;
+  width: 250px;
+}
+
+.item {
+  width: 100%;
+  height: 35px;
+  border: 0.5px solid #000;
+  background-color: #fff;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.item:hover {
+  background-color: #fbfbfb;
+}

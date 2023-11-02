@@ -1,0 +1,20 @@
+.container {
+  padding: 10px 20px;
+  background-color: #fbfbfb;
+  font-family: Oxygen Mono;
+  font-size: 12px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: normal;
+  cursor: pointer;
+  text-transform: lowercase;
+}
+
+.container:first-letter {
+  text-transform: uppercase;
+}
+
+.active {
+  background-color: #fff;
+  box-shadow:inset 0px 0px 0px 1px #000;
+}
