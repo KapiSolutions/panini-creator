@@ -1,0 +1,16 @@
+.switch {
+  display: inline-block;
+  cursor: pointer;
+  width: 27px;
+  height: 35px;
+  position: relative;
+  background-image: url("../../../assets/switch/switchOff.svg");
+  background-repeat: no-repeat;
+  background-position: center;
+}
+
+.checked {
+  background-image: url("../../../assets/switch/switchOn.svg");
+  background-repeat: no-repeat;
+  background-position: center;
+}

@@ -3,6 +3,7 @@ import SplashScreen from "./components/SplashScreen/SplashScreen";
 import usePaniniStore from "./stores/usePaniniStore";
 import FormContainer from "./components/FormContainer/FormContainer";
 import FormHeader from "./components/FormHeader/FormHeader";
+import BaseForm from "./components/BaseForm/BaseForm";
 
 function App() {
   const { paniniStatus } = usePaniniStore();
@@ -12,6 +13,7 @@ function App() {
 
       <FormContainer>
         <FormHeader />
+        <BaseForm />
       </FormContainer>
     </div>
   );
