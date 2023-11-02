@@ -1,0 +1,40 @@
+.container {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.title {
+  height: 35px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-top:0px;
+  margin-bottom: auto;
+
+  p {
+    font-family: "Instrument Serif";
+    font-size: 18px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: normal;
+  }
+}
+
+.inputsContainer {
+  display: flex;
+  align-items: center;
+  justify-content: right;
+  flex-wrap: wrap;
+  column-gap: 5px;
+  row-gap: 15px;
+}
+
+.inputContainer {
+  min-width: 340px;
+  display: flex;
+  align-items: center;
+  justify-content: right;
+  gap: 70px;
+}
