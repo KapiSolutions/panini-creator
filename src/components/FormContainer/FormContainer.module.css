@@ -1,22 +1,18 @@
 .wrapper {
   z-index: 0;
-  position: absolute;
   top: 0;
   left: 0;
   width: 100vw;
-  min-height: 100vh;
   display: flex;
   justify-content: center;
-  align-items: top;
-  
 }
 
 .container {
-    width: 630px;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    gap: 20px;
-    padding: 41px 0px;
-  }
+  width: 630px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  gap: 20px;
+  padding: 41px 0px;
+}
