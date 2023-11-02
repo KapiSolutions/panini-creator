@@ -1,0 +1,11 @@
+.button {
+  width: 17px;
+  height: 17px;
+  background: url("../../../assets/addButton/Add.svg") no-repeat;
+  background-size: cover;
+  cursor: pointer;
+
+  &:hover {
+    background: url("../../../assets/addButton/AddHover.svg") no-repeat;
+  }
+}
