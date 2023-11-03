@@ -1,5 +1,5 @@
 import React from "react";
-import styles from "./MultiSelectInput.module.css";
+import styles from "./MultiSelect.module.css";
 import SelectItem from "./SelectItem/SelectItem";
 
 interface Props {
@@ -8,7 +8,7 @@ interface Props {
   setValue: (value: Array<string>) => void;
 }
 
-function MultiSelectInput({ options, value, setValue }: Props): React.ReactElement {
+function MultiSelect({ options, value, setValue }: Props): React.ReactElement {
   const updateValue = (selectedOption: string) => {
     if (value.includes(selectedOption)) {
       setValue(value.filter((item) => item !== selectedOption));
@@ -28,4 +28,4 @@ function MultiSelectInput({ options, value, setValue }: Props): React.ReactEleme
   );
 }
 
-export default MultiSelectInput;
+export default MultiSelect;

@@ -1,5 +1,5 @@
 import React from "react";
-import styles from "./CheckBoxSquareInput.module.css";
+import styles from "./CheckBoxSquare.module.css";
 import CheckBoxSquareItem from "./CheckBoxSquareItem/CheckBoxSquareItem";
 
 interface Props {
@@ -7,7 +7,7 @@ interface Props {
   value: Array<string>;
   setValue: (value: Array<string>) => void;
 }
-function CheckBoxSquareInput({ options, value, setValue }: Props): React.ReactElement {
+function CheckBoxSquare({ options, value, setValue }: Props): React.ReactElement {
   const updateValue = (selectedOption: string) => {
     if (value.includes(selectedOption)) {
       setValue(value.filter((item) => item !== selectedOption));
@@ -26,4 +26,4 @@ function CheckBoxSquareInput({ options, value, setValue }: Props): React.ReactEl
   );
 }
 
-export default CheckBoxSquareInput;
+export default CheckBoxSquare;

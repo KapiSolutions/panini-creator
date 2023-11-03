@@ -1,12 +1,12 @@
 import React, { useState } from "react";
 import styles from "./FormItemMultipleChoose.module.css";
-import CarouselInput from "../Inputs/CarouselInput/CarouselInput";
-import DropDownInput from "../Inputs/DropDownInput/DropDownInput";
-import MultiSelectInput from "../Inputs/MultiSelectInput/MultiSelectInput";
+import Carousel from "../Inputs/Carousel/Carousel";
+import DropDown from "../Inputs/DropDown/DropDown";
+import MultiSelect from "../Inputs/MultiSelect/MultiSelect";
 import Switch from "../SettingElements/Switch/Switch";
 import AddButton from "../SettingElements/AddButton/AddButton";
 import DeleteButton from "../SettingElements/DeleteButton/DeleteButton";
-import CheckBoxSquareInput from "../Inputs/CheckBoxSquareInput/CheckBoxSquareInput";
+import CheckBoxSquare from "../Inputs/CheckBoxSquare/CheckBoxSquare";
 
 interface Props {
   title: string;
@@ -18,7 +18,6 @@ interface Props {
 }
 
 function FormItemMultipleChoose({ title, options, type, defaultValue, withSettings = true, zIndex = 100 }: Props) {
-  // const initValue = type === "multiselect" || type === "checkbox" ? [] : [options[0]];
   const [switchValue, setSwitchValue] = useState<boolean>(true);
   const [value, setValue] = useState<Array<string>>(defaultValue);
   console.log(`${title}: ${value}`);
@@ -37,11 +36,11 @@ function FormItemMultipleChoose({ title, options, type, defaultValue, withSettin
     switch (type) {
       case "carousel":
         return (
-          <CarouselInput options={options} value={value[index]} setValue={(newValue) => updateValue(newValue, index)} />
+          <Carousel options={options} value={value[index]} setValue={(newValue) => updateValue(newValue, index)} />
         );
       case "dropdown":
         return (
-          <DropDownInput
+          <DropDown
             options={options}
             zIndex={zIndex}
             value={value[index]}
@@ -49,9 +48,9 @@ function FormItemMultipleChoose({ title, options, type, defaultValue, withSettin
           />
         );
       case "checkbox":
-        return <CheckBoxSquareInput options={options} value={value} setValue={setValue} />;
+        return <CheckBoxSquare options={options} value={value} setValue={setValue} />;
       case "multiselect":
-        return <MultiSelectInput options={options} value={value} setValue={setValue} />;
+        return <MultiSelect options={options} value={value} setValue={setValue} />;
       default:
         return "Input type is not supported";
     }

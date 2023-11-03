@@ -1,5 +1,5 @@
-import React, { useState } from "react";
-import styles from "./CarouselInput.module.css";
+import React from "react";
+import styles from "./Carousel.module.css";
 import ArrowRight from "../../Icons/ArrowRight";
 import ArrowLeft from "../../Icons/ArrowLeft";
 import Grain from "../../Icons/Grain";
@@ -11,7 +11,7 @@ interface Props {
   setValue: (value: string) => void;
 }
 
-function CarouselInput({ options, value, setValue }: Props): React.ReactElement {
+function Carousel({ options, value, setValue }: Props): React.ReactElement {
   const previousValue = () => {
     const idx = options.indexOf(value) - 1;
     const length = options.length;
@@ -42,4 +42,4 @@ function CarouselInput({ options, value, setValue }: Props): React.ReactElement 
   );
 }
 
-export default CarouselInput;
+export default Carousel;

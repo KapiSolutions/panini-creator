@@ -1,8 +1,8 @@
 import React, { useState } from "react";
 import styles from "./FormItemSingleChoose.module.css";
-import CarouselInput from "../Inputs/CarouselInput/CarouselInput";
-import CheckBoxRadialInput from "../Inputs/CheckBoxRadialInput/CheckBoxRadialInput";
-import CheckBoxSquareItem from "../Inputs/CheckBoxSquareInput/CheckBoxSquareItem/CheckBoxSquareItem";
+import Carousel from "../Inputs/Carousel/Carousel";
+import CheckBoxRadial from "../Inputs/CheckBoxRadial/CheckBoxRadial";
+import CheckBoxSquareItem from "../Inputs/CheckBoxSquare/CheckBoxSquareItem/CheckBoxSquareItem";
 
 interface Props {
   title: string;
@@ -18,9 +18,9 @@ console.log(title,value)
   const getInputField = () => {
     switch (type) {
       case "carousel":
-        return <CarouselInput options={options} value={value as string} setValue={setValue} />;
+        return <Carousel options={options} value={value as string} setValue={setValue} />;
       case "radialSelect":
-        return <CheckBoxRadialInput options={options} value={value as string} setValue={setValue} />;
+        return <CheckBoxRadial options={options} value={value as string} setValue={setValue} />;
       case "squareSelect":
         return <CheckBoxSquareItem option={options[0]} value={value as string} onClick={() => setValue(value ? null : options[0])} />;
       default:
