@@ -1,0 +1,6 @@
+.container {
+  display: inline-flex;
+  text-align: right;
+  gap: 29px;
+  cursor: pointer;
+}

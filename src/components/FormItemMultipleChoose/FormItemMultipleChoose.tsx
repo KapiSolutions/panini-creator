@@ -6,19 +6,21 @@ import MultiSelectInput from "../Inputs/MultiSelectInput/MultiSelectInput";
 import Switch from "../SettingElements/Switch/Switch";
 import AddButton from "../SettingElements/AddButton/AddButton";
 import DeleteButton from "../SettingElements/DeleteButton/DeleteButton";
+import CheckBoxSquareInput from "../Inputs/CheckBoxSquareInput/CheckBoxSquareInput";
 
 interface Props {
   title: string;
   options: Array<string>;
-  type: "carousel" | "dropdown" | "multiselect";
+  type: "carousel" | "dropdown" | "multiselect" | "checkbox";
+  defaultValue: Array<string>;
   withSettings?: boolean;
   zIndex?: number;
 }
 
-function FormItemMultipleChoose({ title, options, type, withSettings = true, zIndex = 100 }: Props) {
-  const initValue = type === "multiselect" ? [] : [options[0]];
+function FormItemMultipleChoose({ title, options, type, defaultValue, withSettings = true, zIndex = 100 }: Props) {
+  // const initValue = type === "multiselect" || type === "checkbox" ? [] : [options[0]];
   const [switchValue, setSwitchValue] = useState<boolean>(true);
-  const [value, setValue] = useState<Array<string>>(initValue);
+  const [value, setValue] = useState<Array<string>>(defaultValue);
   console.log(`${title}: ${value}`);
 
   const updateValue = (newValue: string, index: number) => {
@@ -46,6 +48,8 @@ function FormItemMultipleChoose({ title, options, type, withSettings = true, zIn
             setValue={(newValue) => updateValue(newValue, index)}
           />
         );
+      case "checkbox":
+        return <CheckBoxSquareInput options={options} value={value} setValue={setValue} />;
       case "multiselect":
         return <MultiSelectInput options={options} value={value} setValue={setValue} />;
       default:
@@ -77,11 +81,12 @@ function FormItemMultipleChoose({ title, options, type, withSettings = true, zIn
         </div>
 
         {/* Aditionals rows */}
-        {switchValue &&
+        {withSettings &&
+          switchValue &&
           value.length >= 2 &&
           Array.from({ length: value.length - 1 }).map((_, idx) => (
             <div className={styles.inputContainer} key={idx} style={{ zIndex: zIndex - idx - 1 }}>
-              {withSettings && switchValue && (
+              {switchValue && (
                 <>
                   {withSettings && <DeleteButton onClick={() => deleteValue(idx + 1)} />}
                   {getInputField(idx + 1)}

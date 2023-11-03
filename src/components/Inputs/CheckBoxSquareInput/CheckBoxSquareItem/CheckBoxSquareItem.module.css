@@ -1,0 +1,24 @@
+.option {
+  display: inline-flex;
+  justify-content: right;
+  gap: 20px;
+  cursor: pointer;
+}
+span {
+  font-family: "Oxygen Mono";
+  font-size: 12px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: normal;
+}
+
+.checkbox {
+  width: 17px;
+  height: 17px;
+  background: url("../../../../assets/squareCheckBox/squareCheckBoxOff.svg") no-repeat;
+  background-size: cover;
+}
+
+.checked {
+  background: url("../../../../assets/squareCheckBox/squareCheckBoxOn.svg") no-repeat;
+}

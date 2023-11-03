@@ -1,14 +1,13 @@
 import React from "react";
-import styles from "./MultiSelectInput.module.css";
-import SelectItem from "./SelectItem/SelectItem";
+import styles from "./CheckBoxSquareInput.module.css";
+import CheckBoxSquareItem from "./CheckBoxSquareItem/CheckBoxSquareItem";
 
 interface Props {
   options: Array<string>;
   value: Array<string>;
   setValue: (value: Array<string>) => void;
 }
-
-function MultiSelectInput({ options, value, setValue }: Props): React.ReactElement {
+function CheckBoxSquareInput({ options, value, setValue }: Props): React.ReactElement {
   const updateValue = (selectedOption: string) => {
     if (value.includes(selectedOption)) {
       setValue(value.filter((item) => item !== selectedOption));
@@ -18,14 +17,13 @@ function MultiSelectInput({ options, value, setValue }: Props): React.ReactEleme
       setValue(tmpArr);
     }
   };
-
   return (
     <div className={styles.container}>
       {options.map((option, idx) => (
-        <SelectItem key={idx} option={option} value={value.join()} onClick={() => updateValue(option)} />
+        <CheckBoxSquareItem key={idx} option={option} value={Array.isArray(value) ? value.join() : value} onClick={() => updateValue(option)} />
       ))}
     </div>
   );
 }
 
-export default MultiSelectInput;
+export default CheckBoxSquareInput;
