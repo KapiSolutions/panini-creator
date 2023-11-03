@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import styles from "./DropDownInput.module.css";
+import styles from "./DropDown.module.css";
 import ArrowDown from "../../Icons/ArrowDown";
 
 interface Props {
@@ -9,7 +9,7 @@ interface Props {
   zIndex?: number;
 }
 
-function DropDownInput({ options, value, setValue, zIndex = 9 }: Props) {
+function DropDown({ options, value, setValue, zIndex = 9 }: Props) {
   const [showItems, setShowItems] = useState<boolean>(false);
 
   return (
@@ -31,4 +31,4 @@ function DropDownInput({ options, value, setValue, zIndex = 9 }: Props) {
   );
 }
 
-export default DropDownInput;
+export default DropDown;
