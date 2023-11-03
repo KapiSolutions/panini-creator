@@ -5,6 +5,7 @@ import FormContainer from "./components/FormContainer/FormContainer";
 import FormHeader from "./components/FormHeader/FormHeader";
 import BaseForm from "./components/BaseForm/BaseForm";
 import ExtrasForm from "./components/ExtrasForm/ExtrasForm";
+import FinalizeForm from "./components/FinalizeForm/FinalizeForm";
 
 function App() {
   const { paniniStatus } = usePaniniStore();
@@ -16,6 +17,7 @@ function App() {
         <FormHeader />
         <BaseForm />
         <ExtrasForm />
+        <FinalizeForm />
       </FormContainer>
     </div>
   );
