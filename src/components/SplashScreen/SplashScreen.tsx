@@ -1,11 +1,11 @@
 import React, { useState, useEffect, ReactElement } from "react";
 import styles from "./SplashScreen.module.css";
 import usePaniniStore from "../../stores/usePaniniStore";
+import { config } from "../../config/config";
 
 function SplashScreen(): ReactElement {
   const [isBtnClicked, setBtnClicked] = useState<Boolean>(false);
   const { paniniStatus, setPaniniStatus } = usePaniniStore();
-  const animationTime = 2400; // 2.4s animation duration
 
   useEffect(() => {
     let timeout: NodeJS.Timeout;
@@ -13,7 +13,7 @@ function SplashScreen(): ReactElement {
     if (isBtnClicked) {
       timeout = setTimeout(() => {
         setPaniniStatus("started");
-      }, animationTime);
+      }, config.animationTime);
     }
 
     return () => {
@@ -24,7 +24,11 @@ function SplashScreen(): ReactElement {
   }, [isBtnClicked]);
 
   return (
-    <div className={`${styles.container} ${isBtnClicked && styles.animationContainer}`}>
+    <div
+      className={`${styles.container} ${isBtnClicked && styles.animationOut} ${
+        paniniStatus === "completed" && styles.animationIn
+      }`}
+    >
       {/* Header */}
       <div className={styles.header}>
         <h1>{paniniStatus === "completed" ? "Panini ordered" : "Panini Creator"}</h1>
