@@ -5,7 +5,14 @@ import FormItemSingleChoose from "../FormItemSingleChoose/FormItemSingleChoose";
 import usePaniniStore from "../../stores/usePaniniStore";
 
 function FinalizeForm() {
-  const { sandwichPayload } = usePaniniStore();
+  const { sandwichPayload, setPaniniStatus } = usePaniniStore();
+  const handlePlaceOrder = (): void => {
+    setPaniniStatus("completed");
+  };
+  const handleStartAgain = (): void => {
+    const element = document.getElementById("header");
+    element.scrollIntoView({ behavior: "smooth" });
+  };
   return (
     <div className={styles.container}>
       <h2>Finalize order</h2>
@@ -21,8 +28,12 @@ function FinalizeForm() {
 
       <Separator />
       <div className={styles.buttonsContainer}>
-        <button className={styles.primaryButton}>Place order</button>
-        <button className={styles.secondaryButton}>Start again</button>
+        <button className={styles.primaryButton} onClick={handlePlaceOrder}>
+          Place order
+        </button>
+        <button className={styles.secondaryButton} onClick={handleStartAgain}>
+          Start again
+        </button>
       </div>
     </div>
   );
