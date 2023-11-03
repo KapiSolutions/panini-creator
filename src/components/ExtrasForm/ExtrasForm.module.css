@@ -1,21 +1,21 @@
 .container {
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    gap: 20px;
-    width: 100%;
-    padding: 80px;
-    border: 1px solid #000;
-    background-color: #fff;
-  }
-  
-  h2 {
-    font-family: Instrument Serif;
-    font-size: 26px;
-    font-style: normal;
-    font-weight: 400;
-    line-height: normal;
-    text-transform: uppercase;
-    padding-bottom: 20px;
-  }
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  gap: 20px;
+  width: 100%;
+  padding: 80px;
+  border: 1px solid #000;
+  background-color: #fff;
+}
+
+h2 {
+  font-family: "Instrument Serif";
+  font-size: 26px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: normal;
+  text-transform: uppercase;
+  padding-bottom: 20px;
+}
