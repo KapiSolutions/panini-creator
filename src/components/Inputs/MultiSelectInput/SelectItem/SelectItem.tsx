@@ -3,20 +3,13 @@ import styles from "./SelectItem.module.css";
 
 interface Props {
   option: string;
+  value: string;
   onClick: () => void;
 }
 
-function SelectItem({ option, onClick }: Props): React.ReactElement {
-  const [clicked, setClicked] = useState<boolean>(false);
-
+function SelectItem({ option, value, onClick }: Props): React.ReactElement {
   return (
-    <div
-      className={`${styles.container} ${clicked && styles.active}`}
-      onClick={() => {
-        setClicked(!clicked);
-        onClick();
-      }}
-    >
+    <div className={`${styles.container} ${value.includes(option) && styles.active}`} onClick={() => onClick()}>
       {option}
     </div>
   );

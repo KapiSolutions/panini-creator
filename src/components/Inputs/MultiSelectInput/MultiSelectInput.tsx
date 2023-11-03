@@ -22,7 +22,7 @@ function MultiSelectInput({ options, value, setValue }: Props): React.ReactEleme
   return (
     <div className={styles.container}>
       {options.map((option, idx) => (
-        <SelectItem key={idx} option={option} onClick={() => updateValue(option)} />
+        <SelectItem key={idx} option={option} value={value.join()} onClick={() => updateValue(option)} />
       ))}
     </div>
   );
