@@ -1,0 +1,23 @@
+.option {
+  display: inline-flex;
+  justify-content: right;
+  gap: 20px;
+}
+span {
+  font-family: "Oxygen Mono";
+  font-size: 12px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: normal;
+}
+
+.checkbox {
+  width: 17px;
+  height: 17px;
+  background: url("../../../../assets/radialCheckBox/radialCheckBoxOff.svg") no-repeat;
+  background-size: cover;
+}
+
+.checked {
+  background: url("../../../../assets/radialCheckBox/radialCheckBoxOn.svg") no-repeat;
+}

@@ -1,0 +1,6 @@
+.container {
+  display: flex;
+  flex-direction: column;
+  text-align: right;
+  gap: 15px;
+}
