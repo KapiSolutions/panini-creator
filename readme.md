@@ -1,9 +1,6 @@
 <h1 align="center">
   Panini Creator 🥪
 </h1>
-<p align="center">
-  <a href="https://www.brightlightgypsy.pl">- Live link -</a>
-</p>
 
 Master forms in React by creating sandwich configurator using React Hook Form, and Zod.
 
