@@ -5,13 +5,13 @@ type Statuses = "init" | "started" | "completed";
 
 interface PaniniStore {
   paniniStatus: Statuses;
-  sandwichPayload: SandwichPayload;
+  defaultPanini: SandwichPayload;
   setPaniniStatus: (value: Statuses) => void;
 }
 
 const usePaniniStore = create<PaniniStore>((set) => ({
   paniniStatus: "init",
-  sandwichPayload: {
+  defaultPanini: {
     sandwichName: "",
     cutlery: false,
     napkins: false,

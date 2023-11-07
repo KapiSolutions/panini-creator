@@ -4,34 +4,41 @@ import Carousel from "../Inputs/Carousel/Carousel";
 import CheckBoxRadial from "../Inputs/CheckBoxRadial/CheckBoxRadial";
 import CheckBoxSquareItem from "../Inputs/CheckBoxSquare/CheckBoxSquareItem/CheckBoxSquareItem";
 import Text from "../Inputs/Text/Text";
+import { useFormContext } from "react-hook-form";
 
 interface Props {
   title: string;
+  name: string;
   options?: Array<string>;
-  defaultValue: string | null | boolean;
   type: "carousel" | "radialSelect" | "squareSelect" | "text";
   align?: "center" | "start";
 }
 
-function FormItemSingleChoose({ title, options, type, defaultValue, align = "center" }: Props) {
-  const [value, setValue] = useState<string | null | boolean>(defaultValue);
-  console.log(title, value);
+function FormItemSingleChoose({ title, name, options, type, align = "center" }: Props) {
+  const { getValues, setValue } = useFormContext();
+  const [actValue, setActValue] = useState<string | null | boolean>(getValues(name));
+
+  const updateValue = (newValue: string | null | boolean) => {
+    setActValue(newValue);
+    setValue(name, newValue);
+  };  
+
   const getInputField = () => {
     switch (type) {
       case "carousel":
-        return <Carousel options={options} value={value as string} setValue={setValue} />;
+        return <Carousel options={options} value={getValues(name) as string} setValue={updateValue} />;
       case "radialSelect":
-        return <CheckBoxRadial options={options} value={value as string} setValue={setValue} />;
+        return <CheckBoxRadial options={options} value={getValues(name) as string} setValue={updateValue} />;
       case "squareSelect":
         return (
           <CheckBoxSquareItem
             option={options ? options[0] : "Add to order"} //there is no options for cutlery and napkins, and there is boolean value for them
-            value={value as string}
-            onClick={() => setValue(options ? (value ? null : options[0]) : !value)}
+            value={getValues(name) as string}
+            onClick={() => updateValue(options ? (getValues(name) ? null : options[0]) : !getValues(name))}
           />
         );
       case "text":
-        return <Text value={value as string} setValue={setValue} />;
+        return <Text value={getValues(name) as string} setValue={updateValue} />;
       default:
         return "Input type is not supported";
     }

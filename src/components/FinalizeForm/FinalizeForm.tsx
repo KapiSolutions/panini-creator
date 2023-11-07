@@ -3,10 +3,15 @@ import styles from "./FinalizeForm.module.css";
 import Separator from "../Separator/Separator";
 import FormItemSingleChoose from "../FormItemSingleChoose/FormItemSingleChoose";
 import usePaniniStore from "../../stores/usePaniniStore";
+import { useFormContext } from "react-hook-form";
 
 function FinalizeForm() {
-  const { sandwichPayload, setPaniniStatus } = usePaniniStore();
+  const { setPaniniStatus } = usePaniniStore();
+  const { handleSubmit, getValues, reset } = useFormContext();
+
   const handlePlaceOrder = (): void => {
+    console.log("Form Values:", getValues());
+    reset();
     setPaniniStatus("completed");
   };
   const handleStartAgain = (): void => {
@@ -18,17 +23,17 @@ function FinalizeForm() {
       <h2>Finalize order</h2>
 
       <Separator />
-      <FormItemSingleChoose title="Name panini" type="text" defaultValue={sandwichPayload.sandwichName} />
+      <FormItemSingleChoose title="Name panini" name="sandwichName" type="text" />
 
       <Separator />
-      <FormItemSingleChoose title="Cutlery" type="squareSelect" defaultValue={sandwichPayload.cutlery} />
+      <FormItemSingleChoose title="Cutlery" name="cutlery" type="squareSelect" />
 
       <Separator />
-      <FormItemSingleChoose title="Napkins" type="squareSelect" defaultValue={sandwichPayload.napkins} />
+      <FormItemSingleChoose title="Napkins" name="napkins" type="squareSelect" />
 
       <Separator />
       <div className={styles.buttonsContainer}>
-        <button className={styles.primaryButton} onClick={handlePlaceOrder}>
+        <button className={styles.primaryButton} onClick={handleSubmit(handlePlaceOrder)}>
           Place order
         </button>
         <button className={styles.secondaryButton} onClick={handleStartAgain}>
