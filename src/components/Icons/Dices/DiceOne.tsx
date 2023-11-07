@@ -13,18 +13,6 @@ function DiceOne() {
         stroke="black"
         strokeWidth="0.5"
       />
-      <rect
-        x="9.03905"
-        y="0.34829"
-        width="6.69963"
-        height="6.69963"
-        transform="rotate(35.1014 9.03905 0.34829)"
-        fill="white"
-        stroke="black"
-        strokeWidth="0.5"
-      />
-      <circle cx="11.5" cy="4.5" r="0.5" fill="black" />
-      <circle cx="8.5" cy="5.5" r="0.5" fill="black" />
       <circle cx="4.5" cy="12.5" r="0.5" fill="black" />
     </svg>
   );

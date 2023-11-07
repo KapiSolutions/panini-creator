@@ -26,40 +26,32 @@ button {
   cursor: pointer;
 }
 
- /* Square with a single dot in the center
- .square {
-    width: 6.7px;
-    height: 6.7px;
-    position: relative;
-    border: 0.5px solid #000;
+.iconsContainer {
+  width: 15px;
+  height: 17px;
+  position: relative;
 }
 
-.dot1 {
-    width: 1px;
-    height: 1px;
-    background-color: #000;
-    border-radius: 50%;
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
+.diceOne {
+  position: absolute;
+  left: 0px;
+  transition: transform 0.5s;
 }
 
-.dot2_1, .dot2_2 {
-    width: 1px;
-    height: 1px;
-    background-color: #000;
-    border-radius: 50%;
-    position: absolute;
+.diceTwo {
+  position: absolute;
+  left: 0px;
+  transition: transform 0.5s;
 }
 
-.dot2_1 {
-    top: 20%;
-    left: 20%;
+button:hover{
+  box-shadow:inset 0px 0px 0px 1px #000;
 }
 
-.dot2_2 {
-    top: 80%;
-    left: 80%;
-    transform: translate(-80%, -80%);
-} */
+button:hover .diceOne {
+  transform: translate(1px,-6px) rotate(50deg);
+}
+
+button:hover .diceTwo {
+  transform: translate(5px,6px) rotate(-65deg);
+}
