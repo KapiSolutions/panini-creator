@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import styles from "./FormItemMultipleChoose.module.css";
 import Carousel from "../Inputs/Carousel/Carousel";
 import DropDown from "../Inputs/DropDown/DropDown";
@@ -20,11 +20,16 @@ interface Props {
 }
 
 function FormItemMultipleChoose({ title, name, options, type, withSettings = true, zIndex = 100 }: Props) {
-  const { errors } = usePaniniStore();
+  const { errors, reset } = usePaniniStore();
   const { getValues, setValue } = useFormContext();
   const [switchValue, setSwitchValue] = useState<boolean>(true);
   const [actValue, setActValue] = useState<Array<string>>(getValues(name));
   const error = errors?.filter((error) => error.path[0] === name)[0];
+
+  useEffect(() => {
+    setSwitchValue(true);
+    setActValue(getValues(name));
+  }, [reset]);
 
   const updateValue = (newValue: string, index: number) => {
     const arr = [...getValues(name)];

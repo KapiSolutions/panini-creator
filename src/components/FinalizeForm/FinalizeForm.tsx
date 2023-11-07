@@ -10,7 +10,7 @@ import axios, { AxiosResponse, AxiosError } from "axios";
 import { config } from "../../config/config";
 
 function FinalizeForm() {
-  const { setPaniniStatus, setErrors } = usePaniniStore();
+  const { setPaniniStatus, setErrors, setReset } = usePaniniStore();
   const { getValues, reset } = useFormContext();
   const [loading, setLoading] = useState<boolean>(false);
 
@@ -67,9 +67,14 @@ function FinalizeForm() {
     document.body.removeChild(link);
   };
 
-  const handleStartAgain = (): void => {
-    const element = document.getElementById("header");
-    element?.scrollIntoView({ behavior: "smooth" });
+  const handleStartAgain = async () => {
+    setTimeout(() => {
+      //async scroll
+      const element = document.getElementById("header");
+      element?.scrollIntoView({ behavior: "smooth" });
+    }, 0);
+    setReset();
+    reset();
   };
   return (
     <div className={styles.container}>
