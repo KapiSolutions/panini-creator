@@ -5,6 +5,7 @@ import CheckBoxRadial from "../Inputs/CheckBoxRadial/CheckBoxRadial";
 import CheckBoxSquareItem from "../Inputs/CheckBoxSquare/CheckBoxSquareItem/CheckBoxSquareItem";
 import Text from "../Inputs/Text/Text";
 import { useFormContext } from "react-hook-form";
+import usePaniniStore from "../../stores/usePaniniStore";
 
 interface Props {
   title: string;
@@ -15,20 +16,24 @@ interface Props {
 }
 
 function FormItemSingleChoose({ title, name, options, type, align = "center" }: Props) {
+  const { errors } = usePaniniStore();
   const { getValues, setValue } = useFormContext();
   const [actValue, setActValue] = useState<string | null | boolean>(getValues(name));
+  const error = errors?.filter((error) => error.path[0] === name)[0];
 
   const updateValue = (newValue: string | null | boolean) => {
     setActValue(newValue);
     setValue(name, newValue);
-  };  
+  };
 
   const getInputField = () => {
     switch (type) {
       case "carousel":
         return <Carousel options={options ? options : []} value={getValues(name) as string} setValue={updateValue} />;
       case "radialSelect":
-        return <CheckBoxRadial options={options ? options : []} value={getValues(name) as string} setValue={updateValue} />;
+        return (
+          <CheckBoxRadial options={options ? options : []} value={getValues(name) as string} setValue={updateValue} />
+        );
       case "squareSelect":
         return (
           <CheckBoxSquareItem
@@ -44,11 +49,18 @@ function FormItemSingleChoose({ title, name, options, type, align = "center" }: 
     }
   };
   return (
-    <div className={styles.container} style={{ alignItems: align }}>
+    <div className={styles.container} style={{ alignItems: error ? "start" : align  }}>
       <div className={styles.title}>
         <p>{title}</p>
       </div>
-      <div className={styles.inputsContainer}>{getInputField()}</div>
+      <div className={styles.inputsContainer}>
+        {getInputField()}
+        {error && (
+          <span className={styles.error} style={{ textAlign: type === "text" ? "left" : "right" }}>
+            {error.message}
+          </span>
+        )}
+      </div>
     </div>
   );
 }

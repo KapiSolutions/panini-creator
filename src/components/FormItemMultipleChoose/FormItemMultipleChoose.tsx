@@ -8,6 +8,7 @@ import AddButton from "../SettingElements/AddButton/AddButton";
 import DeleteButton from "../SettingElements/DeleteButton/DeleteButton";
 import CheckBoxSquare from "../Inputs/CheckBoxSquare/CheckBoxSquare";
 import { useFormContext } from "react-hook-form";
+import usePaniniStore from "../../stores/usePaniniStore";
 
 interface Props {
   title: string;
@@ -19,9 +20,11 @@ interface Props {
 }
 
 function FormItemMultipleChoose({ title, name, options, type, withSettings = true, zIndex = 100 }: Props) {
+  const { errors } = usePaniniStore();
   const { getValues, setValue } = useFormContext();
   const [switchValue, setSwitchValue] = useState<boolean>(true);
   const [actValue, setActValue] = useState<Array<string>>(getValues(name));
+  const error = errors?.filter((error) => error.path[0] === name)[0];
 
   const updateValue = (newValue: string, index: number) => {
     const arr = [...getValues(name)];
@@ -125,6 +128,7 @@ function FormItemMultipleChoose({ title, name, options, type, withSettings = tru
             </div>
           ))}
       </div>
+      {error && <span className={styles.error}>{error.message}</span>}
     </div>
   );
 }
