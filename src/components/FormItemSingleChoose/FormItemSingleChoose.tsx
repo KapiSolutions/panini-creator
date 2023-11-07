@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import styles from "./FormItemSingleChoose.module.css";
 import Carousel from "../Inputs/Carousel/Carousel";
 import CheckBoxRadial from "../Inputs/CheckBoxRadial/CheckBoxRadial";
@@ -16,10 +16,14 @@ interface Props {
 }
 
 function FormItemSingleChoose({ title, name, options, type, align = "center" }: Props) {
-  const { errors } = usePaniniStore();
+  const { errors, reset } = usePaniniStore();
   const { getValues, setValue } = useFormContext();
   const [actValue, setActValue] = useState<string | null | boolean>(getValues(name));
   const error = errors?.filter((error) => error.path[0] === name)[0];
+
+  useEffect(() => {
+    setActValue(getValues(name));
+  }, [reset]);
 
   const updateValue = (newValue: string | null | boolean) => {
     setActValue(newValue);
@@ -49,7 +53,7 @@ function FormItemSingleChoose({ title, name, options, type, align = "center" }: 
     }
   };
   return (
-    <div className={styles.container} style={{ alignItems: error ? "start" : align  }}>
+    <div className={styles.container} style={{ alignItems: error ? "start" : align }}>
       <div className={styles.title}>
         <p>{title}</p>
       </div>
