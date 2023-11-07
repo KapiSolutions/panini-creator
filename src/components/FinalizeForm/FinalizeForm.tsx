@@ -13,15 +13,15 @@ function FinalizeForm() {
   const { getValues, reset } = useFormContext();
 
   const handlePlaceOrder = (): void => {
-    setErrors(null);
+    setErrors([]);
 
     try {
       schema.parse(getValues()); //throws error if validation fails
 
       // function for data submission
 
-      // setPaniniStatus("completed");
-      // reset();
+      setPaniniStatus("completed");
+      reset();
     } catch (error) {
       if (error instanceof z.ZodError) {
         const validationErrors: z.ZodIssue[] = error.issues;
@@ -31,7 +31,7 @@ function FinalizeForm() {
       }
     }
   };
-  console.log(errors);
+
   const handleStartAgain = (): void => {
     const element = document.getElementById("header");
     element?.scrollIntoView({ behavior: "smooth" });
