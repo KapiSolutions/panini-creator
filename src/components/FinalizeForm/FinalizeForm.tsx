@@ -4,16 +4,34 @@ import Separator from "../Separator/Separator";
 import FormItemSingleChoose from "../FormItemSingleChoose/FormItemSingleChoose";
 import usePaniniStore from "../../stores/usePaniniStore";
 import { useFormContext } from "react-hook-form";
+import { schema } from "../../schema/paniniSchema";
+import { z } from "zod";
+import type { SandwichPayload } from "../../types/types";
 
 function FinalizeForm() {
-  const { setPaniniStatus } = usePaniniStore();
-  const { handleSubmit, getValues, reset } = useFormContext();
+  const { setPaniniStatus, setErrors, errors } = usePaniniStore();
+  const { getValues, reset } = useFormContext();
 
   const handlePlaceOrder = (): void => {
-    console.log("Form Values:", getValues());
-    reset();
-    setPaniniStatus("completed");
+    setErrors(null);
+
+    try {
+      schema.parse(getValues()); //throws error if validation fails
+
+      // function for data submission
+
+      // setPaniniStatus("completed");
+      // reset();
+    } catch (error) {
+      if (error instanceof z.ZodError) {
+        const validationErrors: z.ZodIssue[] = error.issues;
+        setErrors(validationErrors);
+      } else {
+        console.error("An error occurred:", error);
+      }
+    }
   };
+  console.log(errors);
   const handleStartAgain = (): void => {
     const element = document.getElementById("header");
     element?.scrollIntoView({ behavior: "smooth" });
@@ -33,7 +51,7 @@ function FinalizeForm() {
 
       <Separator />
       <div className={styles.buttonsContainer}>
-        <button className={styles.primaryButton} onClick={handleSubmit(handlePlaceOrder)}>
+        <button className={styles.primaryButton} onClick={handlePlaceOrder}>
           Place order
         </button>
         <button className={styles.secondaryButton} onClick={handleStartAgain}>
