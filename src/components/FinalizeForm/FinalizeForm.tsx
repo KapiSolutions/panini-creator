@@ -4,7 +4,7 @@ import Separator from "../Separator/Separator";
 import FormItemSingleChoose from "../FormItemSingleChoose/FormItemSingleChoose";
 import usePaniniStore from "../../stores/usePaniniStore";
 import { useFormContext } from "react-hook-form";
-import { schema } from "../../schema/paniniSchema";
+import { schema, defaultPanini } from "../../schema/paniniSchema";
 import { z } from "zod";
 import axios, { AxiosResponse, AxiosError } from "axios";
 import { config } from "../../config/config";
@@ -19,7 +19,10 @@ function FinalizeForm() {
     setLoading(true);
     const data = getValues();
     try {
+      // validate data
       schema.parse(data); //throws error if validation fails
+
+      // Send data to api
       const url = "https://training.nerdbord.io/api/v1/panini-creator/order";
       const res: AxiosResponse = await axios.post(url, data, {
         headers: {
@@ -28,18 +31,18 @@ function FinalizeForm() {
         },
       });
 
+      // Open success screen(Fade in animation)
       setPaniniStatus("completed");
-      reset();
+
+      // Reset form
+      reset(defaultPanini);
+      setReset();
+
+      //open new tab with panini visualization(when success screen loaded)
       setTimeout(() => {
         downloadImage(res.data.imageUrl, "ordered_panini.jpg");
       }, config.animationTime);
 
-      // window.open(res.data.imageUrl, "_blank");
-      // if (!newTab) {
-      //   setTimeout(function () {
-      //     alert("Allow your browser to open a pop-up window to check your panini image.");
-      //   }, 0);
-      // }
     } catch (error) {
       if (error instanceof z.ZodError) {
         const validationErrors: z.ZodIssue[] = error.issues;
@@ -73,8 +76,8 @@ function FinalizeForm() {
       const element = document.getElementById("header");
       element?.scrollIntoView({ behavior: "smooth" });
     }, 0);
+    reset(defaultPanini);
     setReset();
-    reset();
   };
   return (
     <div className={styles.container}>
