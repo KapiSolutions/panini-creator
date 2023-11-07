@@ -5,8 +5,10 @@
 Master forms in React by creating sandwich configurator using React Hook Form, and Zod.
 
 ---
+### 🔗 Live link
+[panini-creator-sable.vercel.app](https://panini-creator-sable.vercel.app/)
 
-### How to start 🚀
+### 🚀 How to start 
 
 1. Install dependencies with ``npm install``
 2. Run ``npm run dev`` to start developing
