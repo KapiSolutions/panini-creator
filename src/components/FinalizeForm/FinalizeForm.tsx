@@ -16,7 +16,7 @@ function FinalizeForm() {
   };
   const handleStartAgain = (): void => {
     const element = document.getElementById("header");
-    element.scrollIntoView({ behavior: "smooth" });
+    element?.scrollIntoView({ behavior: "smooth" });
   };
   return (
     <div className={styles.container}>

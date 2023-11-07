@@ -41,10 +41,4 @@ const FormContainer: React.FC<PropsWithChildren> = ({ children }) => {
   );
 };
 
-export const ConnectForm = ({ children }) => {
-  const methods = useFormContext();
-
-  return children({ ...methods });
-};
-
 export default FormContainer;

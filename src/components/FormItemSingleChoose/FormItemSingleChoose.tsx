@@ -26,9 +26,9 @@ function FormItemSingleChoose({ title, name, options, type, align = "center" }: 
   const getInputField = () => {
     switch (type) {
       case "carousel":
-        return <Carousel options={options} value={getValues(name) as string} setValue={updateValue} />;
+        return <Carousel options={options ? options : []} value={getValues(name) as string} setValue={updateValue} />;
       case "radialSelect":
-        return <CheckBoxRadial options={options} value={getValues(name) as string} setValue={updateValue} />;
+        return <CheckBoxRadial options={options ? options : []} value={getValues(name) as string} setValue={updateValue} />;
       case "squareSelect":
         return (
           <CheckBoxSquareItem
