@@ -2,14 +2,15 @@ import React, { useEffect, useState } from "react";
 import styles from "./FormContainer.module.css";
 import usePaniniStore from "../../stores/usePaniniStore";
 import { config } from "../../config/config";
-import { useForm, FormProvider, useFormContext } from "react-hook-form";
+import { useForm, FormProvider } from "react-hook-form";
+import { defaultPanini } from "../../schema/paniniSchema";
 
-type PropsWithChildren = {
+type Props = {
   children: React.ReactNode;
 };
 
-const FormContainer: React.FC<PropsWithChildren> = ({ children }) => {
-  const { paniniStatus, defaultPanini } = usePaniniStore();
+const FormContainer: React.FC<Props> = ({ children }) => {
+  const { paniniStatus } = usePaniniStore();
   const [position, setPosition] = useState<"fixed" | "absolute">("fixed");
 
   const methods = useForm({ defaultValues: defaultPanini });
