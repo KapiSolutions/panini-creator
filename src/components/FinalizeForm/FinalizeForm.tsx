@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import styles from "./FinalizeForm.module.css";
 import Separator from "../Separator/Separator";
 import FormItemSingleChoose from "../FormItemSingleChoose/FormItemSingleChoose";
@@ -6,30 +6,65 @@ import usePaniniStore from "../../stores/usePaniniStore";
 import { useFormContext } from "react-hook-form";
 import { schema } from "../../schema/paniniSchema";
 import { z } from "zod";
-import type { SandwichPayload } from "../../types/types";
+import axios, { AxiosResponse, AxiosError } from "axios";
+import { config } from "../../config/config";
 
 function FinalizeForm() {
-  const { setPaniniStatus, setErrors, errors } = usePaniniStore();
+  const { setPaniniStatus, setErrors } = usePaniniStore();
   const { getValues, reset } = useFormContext();
+  const [loading, setLoading] = useState<boolean>(false);
 
-  const handlePlaceOrder = (): void => {
+  const handlePlaceOrder = async (): Promise<void> => {
     setErrors([]);
-
+    setLoading(true);
+    const data = getValues();
     try {
-      schema.parse(getValues()); //throws error if validation fails
-
-      // function for data submission
+      schema.parse(data); //throws error if validation fails
+      const url = "https://training.nerdbord.io/api/v1/panini-creator/order";
+      const res: AxiosResponse = await axios.post(url, data, {
+        headers: {
+          Authorization: "secret_token",
+          "Content-Type": "application/json",
+        },
+      });
 
       setPaniniStatus("completed");
       reset();
+      setTimeout(() => {
+        downloadImage(res.data.imageUrl, "ordered_panini.jpg");
+      }, config.animationTime);
+
+      // window.open(res.data.imageUrl, "_blank");
+      // if (!newTab) {
+      //   setTimeout(function () {
+      //     alert("Allow your browser to open a pop-up window to check your panini image.");
+      //   }, 0);
+      // }
     } catch (error) {
       if (error instanceof z.ZodError) {
         const validationErrors: z.ZodIssue[] = error.issues;
         setErrors(validationErrors);
+      } else if (error instanceof AxiosError && error.response) {
+        console.error("Request failed with status code:", error.response.status);
+        console.error("Response data:", error.response.data);
       } else {
         console.error("An error occurred:", error);
       }
+    } finally {
+      setLoading(false);
     }
+  };
+
+  const downloadImage = (url: string, filename: string) => {
+    const link = document.createElement("a");
+    link.href = url;
+    link.target = "_blank";
+    link.download = filename;
+    link.style.display = "none";
+
+    document.body.appendChild(link);
+    link.click();
+    document.body.removeChild(link);
   };
 
   const handleStartAgain = (): void => {
@@ -51,8 +86,8 @@ function FinalizeForm() {
 
       <Separator />
       <div className={styles.buttonsContainer}>
-        <button className={styles.primaryButton} onClick={handlePlaceOrder}>
-          Place order
+        <button className={styles.primaryButton} onClick={handlePlaceOrder} disabled={loading}>
+          {loading ? "Processing..." : "Place order"}
         </button>
         <button className={styles.secondaryButton} onClick={handleStartAgain}>
           Start again
