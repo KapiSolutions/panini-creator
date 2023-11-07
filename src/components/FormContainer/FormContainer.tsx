@@ -2,14 +2,17 @@ import React, { useEffect, useState } from "react";
 import styles from "./FormContainer.module.css";
 import usePaniniStore from "../../stores/usePaniniStore";
 import { config } from "../../config/config";
+import { useForm, FormProvider, useFormContext } from "react-hook-form";
 
 type PropsWithChildren = {
   children: React.ReactNode;
 };
 
 const FormContainer: React.FC<PropsWithChildren> = ({ children }) => {
-  const { paniniStatus } = usePaniniStore();
+  const { paniniStatus, defaultPanini } = usePaniniStore();
   const [position, setPosition] = useState<"fixed" | "absolute">("fixed");
+
+  const methods = useForm({ defaultValues: defaultPanini });
 
   useEffect(() => {
     let timeout: NodeJS.Timeout;
@@ -31,9 +34,17 @@ const FormContainer: React.FC<PropsWithChildren> = ({ children }) => {
   }, [paniniStatus]);
   return (
     <div id="header" className={styles.wrapper} style={{ position: position }}>
-      <div className={styles.container}>{children}</div>
+      <div className={styles.container}>
+        <FormProvider {...methods}>{children}</FormProvider>
+      </div>
     </div>
   );
+};
+
+export const ConnectForm = ({ children }) => {
+  const methods = useFormContext();
+
+  return children({ ...methods });
 };
 
 export default FormContainer;

@@ -7,50 +7,81 @@ import Switch from "../SettingElements/Switch/Switch";
 import AddButton from "../SettingElements/AddButton/AddButton";
 import DeleteButton from "../SettingElements/DeleteButton/DeleteButton";
 import CheckBoxSquare from "../Inputs/CheckBoxSquare/CheckBoxSquare";
+import { useFormContext } from "react-hook-form";
 
 interface Props {
   title: string;
+  name: string;
   options: Array<string>;
   type: "carousel" | "dropdown" | "multiselect" | "checkbox";
-  defaultValue: Array<string>;
   withSettings?: boolean;
   zIndex?: number;
 }
 
-function FormItemMultipleChoose({ title, options, type, defaultValue, withSettings = true, zIndex = 100 }: Props) {
+function FormItemMultipleChoose({ title, name, options, type, withSettings = true, zIndex = 100 }: Props) {
+  const { getValues, setValue } = useFormContext();
   const [switchValue, setSwitchValue] = useState<boolean>(true);
-  const [value, setValue] = useState<Array<string>>(defaultValue);
-  console.log(`${title}: ${value}`);
+  const [actValue, setActValue] = useState<Array<string>>(getValues(name));
 
   const updateValue = (newValue: string, index: number) => {
-    const arr = [...value];
+    const arr = [...getValues(name)];
     arr[index] = newValue;
-    setValue(arr);
+    setActValue(arr);
+    setValue(name, arr);
   };
 
   const deleteValue = (indexToDelete: number) => {
-    setValue(value.filter((_, index) => index !== indexToDelete));
+    const arr = getValues(name).filter((_: string, index: number) => index !== indexToDelete);
+    setActValue(arr);
+    setValue(name, arr);
+  };
+
+  const handleSwitch = (state: boolean) => {
+    state ? setValue(name, actValue) : setValue(name, []);
+    setSwitchValue(state);
   };
 
   const getInputField = (index: number) => {
     switch (type) {
       case "carousel":
         return (
-          <Carousel options={options} value={value[index]} setValue={(newValue) => updateValue(newValue, index)} />
+          <Carousel
+            options={options}
+            value={getValues(name)[index]}
+            setValue={(newValue) => updateValue(newValue, index)}
+          />
         );
       case "dropdown":
         return (
           <DropDown
             options={options}
             zIndex={zIndex}
-            value={value[index]}
+            value={getValues(name)[index]}
             setValue={(newValue) => updateValue(newValue, index)}
           />
         );
       case "checkbox":
-        return <CheckBoxSquare options={options} value={value} setValue={setValue} />;
+        return (
+          <CheckBoxSquare
+            options={options}
+            value={getValues(name)}
+            setValue={(value) => {
+              setActValue(value);
+              setValue(name, value);
+            }}
+          />
+        );
       case "multiselect":
-        return <MultiSelect options={options} value={value} setValue={setValue} />;
+        return (
+          <MultiSelect
+            options={options}
+            value={getValues(name)}
+            setValue={(value) => {
+              setActValue(value);
+              setValue(name, value);
+            }}
+          />
+        );
       default:
         return "Input type is not supported";
     }
@@ -62,14 +93,14 @@ function FormItemMultipleChoose({ title, options, type, defaultValue, withSettin
       </div>
       <div className={styles.inputsContainer}>
         {/* First row */}
-        {withSettings && <Switch value={switchValue} setValue={setSwitchValue} />}
+        {withSettings && <Switch value={switchValue} setValue={handleSwitch} />}
         <div className={styles.inputContainer}>
           {withSettings && switchValue && (
             <>
               {withSettings && (
                 <AddButton
                   onClick={() => {
-                    updateValue(options[0], value.length);
+                    updateValue(options[0], getValues(name).length);
                   }}
                 />
               )}
@@ -82,8 +113,8 @@ function FormItemMultipleChoose({ title, options, type, defaultValue, withSettin
         {/* Aditionals rows */}
         {withSettings &&
           switchValue &&
-          value.length >= 2 &&
-          Array.from({ length: value.length - 1 }).map((_, idx) => (
+          getValues(name).length >= 2 &&
+          Array.from({ length: getValues(name).length - 1 }).map((_, idx) => (
             <div className={styles.inputContainer} key={idx} style={{ zIndex: zIndex - idx - 1 }}>
               {switchValue && (
                 <>

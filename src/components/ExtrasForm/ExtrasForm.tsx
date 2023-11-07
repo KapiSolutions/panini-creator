@@ -7,46 +7,29 @@ import { eggVariants } from "../../data/egg";
 import { spreadVariant } from "../../data/spread";
 import { servingVariant } from "../../data/serving";
 import { toppingVariant } from "../../data/topping";
-import usePaniniStore from "../../stores/usePaniniStore";
 
 function ExtrasForm() {
-  const { sandwichPayload } = usePaniniStore();
   return (
     <div className={styles.container}>
       <h2>Configure extras</h2>
 
       <Separator />
-      <FormItemMultipleChoose
-        title="Cheese"
-        type="dropdown"
-        options={eggVariants}
-        defaultValue={sandwichPayload.extras.egg}
-      />
+      <FormItemMultipleChoose title="Cheese" name="extras.egg" type="dropdown" options={eggVariants} />
 
       <Separator />
       <FormItemMultipleChoose
         title="Spreads"
+        name="extras.spreads"
         type="checkbox"
         options={spreadVariant}
-        defaultValue={sandwichPayload.extras.spreads}
         withSettings={false}
       />
 
       <Separator />
-      <FormItemSingleChoose
-        title="Serving"
-        type="radialSelect"
-        options={servingVariant}
-        defaultValue={sandwichPayload.extras.serving}
-      />
+      <FormItemSingleChoose title="Serving" name="extras.serving" type="radialSelect" options={servingVariant} />
 
       <Separator />
-      <FormItemSingleChoose
-        title="Topping"
-        type="squareSelect"
-        options={toppingVariant}
-        defaultValue={sandwichPayload.extras.topping}
-      />
+      <FormItemSingleChoose title="Topping" name="extras.topping" type="squareSelect" options={toppingVariant} />
 
       <Separator />
     </div>
