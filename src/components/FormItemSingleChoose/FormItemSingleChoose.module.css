@@ -7,6 +7,7 @@
 
 .title {
   height: 35px;
+  white-space: nowrap;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -29,9 +30,26 @@
 }
 
 .inputContainer {
-  min-width: 340px;
+  min-width: 330px;
   display: flex;
   align-items: center;
   justify-content: right;
   gap: 70px;
+  position: relative;
+}
+
+.error {
+  /* position: absolute;
+  margin-top: 54px;
+  height: 40px; */
+  min-width: 330px;
+  margin-top:4px;
+  max-width: 467px;
+  text-align: left;
+  font-family: "Oxygen Mono";
+  font-size: 10px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: normal;
+  cursor: default;
 }
