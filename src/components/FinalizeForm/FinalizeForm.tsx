@@ -7,9 +7,10 @@ import { useFormContext } from "react-hook-form";
 import { schema } from "../../schema/paniniSchema";
 import { z } from "zod";
 import axios, { AxiosResponse, AxiosError } from "axios";
+import { config } from "../../config/config";
 
 function FinalizeForm() {
-  const { setPaniniStatus, setErrors, errors } = usePaniniStore();
+  const { setPaniniStatus, setErrors } = usePaniniStore();
   const { getValues, reset } = useFormContext();
   const [loading, setLoading] = useState<boolean>(false);
 
@@ -19,20 +20,21 @@ function FinalizeForm() {
     const data = getValues();
     try {
       schema.parse(data); //throws error if validation fails
-
       const url = "https://training.nerdbord.io/api/v1/panini-creator/order";
       const res: AxiosResponse = await axios.post(url, data, {
         headers: {
           Authorization: "secret_token",
-          "Content-Type": "application/json", // Adjust content type as needed
+          "Content-Type": "application/json",
         },
       });
 
       setPaniniStatus("completed");
       reset();
+      setTimeout(() => {
+        downloadImage(res.data.imageUrl, "ordered_panini.jpg");
+      }, config.animationTime);
 
-      window.open(res.data.imageUrl, "_blank");
-
+      // window.open(res.data.imageUrl, "_blank");
       // if (!newTab) {
       //   setTimeout(function () {
       //     alert("Allow your browser to open a pop-up window to check your panini image.");
@@ -51,6 +53,18 @@ function FinalizeForm() {
     } finally {
       setLoading(false);
     }
+  };
+
+  const downloadImage = (url: string, filename: string) => {
+    const link = document.createElement("a");
+    link.href = url;
+    link.target = "_blank";
+    link.download = filename;
+    link.style.display = "none";
+
+    document.body.appendChild(link);
+    link.click();
+    document.body.removeChild(link);
   };
 
   const handleStartAgain = (): void => {
