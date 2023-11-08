@@ -14,7 +14,7 @@ function ExtrasForm() {
       <h2>Configure extras</h2>
 
       <Separator />
-      <MultiChoiceField title="Cheese" name="extras.egg" type="dropdown" options={[...eggVariants]} />
+      <MultiChoiceField title="Egg" name="extras.egg" type="dropdown" options={[...eggVariants]} />
 
       <Separator />
       <MultiChoiceField
