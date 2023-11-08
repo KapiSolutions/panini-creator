@@ -1,10 +1,10 @@
 import React from "react";
 import styles from "./FormHeader.module.css";
 import { useFormContext } from "react-hook-form";
-import usePaniniStore from "../../stores/usePaniniStore";
-import { randomPanini } from "../../schema/paniniSchema";
-import DiceOne from "../Icons/Dices/DiceOne";
-import DiceTwo from "../Icons/Dices/DiceTwo";
+import usePaniniStore from "../../../stores/usePaniniStore";
+import { randomPanini } from "../../../schema/paniniSchema";
+import DiceOne from "../../Icons/Dices/DiceOne";
+import DiceTwo from "../../Icons/Dices/DiceTwo";
 
 function FormHeader(): React.ReactElement {
   const { reset } = useFormContext();

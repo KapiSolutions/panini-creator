@@ -1,13 +1,13 @@
 import React, { useState } from "react";
-import styles from "./FinalizeForm.module.css";
-import Separator from "../Separator/Separator";
-import FormItemSingleChoose from "../FormItemSingleChoose/FormItemSingleChoose";
-import usePaniniStore from "../../stores/usePaniniStore";
-import { useFormContext } from "react-hook-form";
-import { schema, defaultPanini } from "../../schema/paniniSchema";
 import { z } from "zod";
+import { useFormContext } from "react-hook-form";
 import axios, { AxiosResponse, AxiosError } from "axios";
-import { config } from "../../config/config";
+import styles from "./FinalizeForm.module.css";
+import Separator from "../../Separator/Separator";
+import SingleChoiceField from "../SingleChoiceField/SingleChoiceField";
+import usePaniniStore from "../../../stores/usePaniniStore";
+import { schema, defaultPanini } from "../../../schema/paniniSchema";
+import { config } from "../../../config/config";
 
 function FinalizeForm() {
   const { setPaniniStatus, setErrors, setReset } = usePaniniStore();
@@ -84,13 +84,13 @@ function FinalizeForm() {
       <h2>Finalize order</h2>
 
       <Separator />
-      <FormItemSingleChoose title="Name panini" name="sandwichName" type="text" />
+      <SingleChoiceField title="Name panini" name="sandwichName" type="text" />
 
       <Separator />
-      <FormItemSingleChoose title="Cutlery" name="cutlery" type="squareSelect" />
+      <SingleChoiceField title="Cutlery" name="cutlery" type="squareSelect" />
 
       <Separator />
-      <FormItemSingleChoose title="Napkins" name="napkins" type="squareSelect" />
+      <SingleChoiceField title="Napkins" name="napkins" type="squareSelect" />
 
       <Separator />
       <div className={styles.buttonsContainer}>
