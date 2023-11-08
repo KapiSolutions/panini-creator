@@ -3,11 +3,12 @@ import styles from "./CheckBoxSquare.module.css";
 import CheckBoxSquareItem from "./CheckBoxSquareItem/CheckBoxSquareItem";
 
 interface Props {
+  name: string;
   options: Array<string>;
   value: Array<string>;
   setValue: (value: Array<string>) => void;
 }
-function CheckBoxSquare({ options, value, setValue }: Props): React.ReactElement {
+function CheckBoxSquare({ name, options, value, setValue }: Props): React.ReactElement {
   const updateValue = (selectedOption: string) => {
     if (value.includes(selectedOption)) {
       setValue(value.filter((item) => item !== selectedOption));
@@ -18,9 +19,15 @@ function CheckBoxSquare({ options, value, setValue }: Props): React.ReactElement
     }
   };
   return (
-    <div className={styles.container}>
+    <div className={styles.container} data-testid={`${name}`}>
       {options.map((option, idx) => (
-        <CheckBoxSquareItem key={idx} option={option} value={Array.isArray(value) ? value.join() : value} onClick={() => updateValue(option)} />
+        <CheckBoxSquareItem
+          key={idx}
+          name={name}
+          option={option}
+          value={Array.isArray(value) ? value.join() : value}
+          onClick={() => updateValue(option)}
+        />
       ))}
     </div>
   );

@@ -3,12 +3,13 @@ import styles from "./MultiSelect.module.css";
 import SelectItem from "./SelectItem/SelectItem";
 
 interface Props {
+  name: string;
   options: Array<string>;
   value: Array<string>;
   setValue: (value: Array<string>) => void;
 }
 
-function MultiSelect({ options, value, setValue }: Props): React.ReactElement {
+function MultiSelect({ name, options, value, setValue }: Props): React.ReactElement {
   const updateValue = (selectedOption: string) => {
     if (value.includes(selectedOption)) {
       setValue(value.filter((item) => item !== selectedOption));
@@ -20,7 +21,7 @@ function MultiSelect({ options, value, setValue }: Props): React.ReactElement {
   };
 
   return (
-    <div className={styles.container}>
+    <div className={styles.container} data-testid={`${name}`}>
       {options.map((option, idx) => (
         <SelectItem key={idx} option={option} value={value.join()} onClick={() => updateValue(option)} />
       ))}
