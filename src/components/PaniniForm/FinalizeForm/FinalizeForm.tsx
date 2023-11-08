@@ -26,7 +26,8 @@ function FinalizeForm() {
       const url = "https://training.nerdbord.io/api/v1/panini-creator/order";
       const res: AxiosResponse = await axios.post(url, data, {
         headers: {
-          Authorization: "secret_token",
+          // @ts-ignore
+          Authorization: import.meta.env.VITE_API_SECRET,
           "Content-Type": "application/json",
         },
       });
