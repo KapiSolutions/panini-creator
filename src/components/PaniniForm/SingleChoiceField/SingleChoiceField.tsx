@@ -1,11 +1,11 @@
 import React, { useState, useEffect } from "react";
-import styles from "./FormItemSingleChoose.module.css";
-import Carousel from "../Inputs/Carousel/Carousel";
-import CheckBoxRadial from "../Inputs/CheckBoxRadial/CheckBoxRadial";
-import CheckBoxSquareItem from "../Inputs/CheckBoxSquare/CheckBoxSquareItem/CheckBoxSquareItem";
-import Text from "../Inputs/Text/Text";
+import styles from "./SingleChoiceField.module.css";
+import Carousel from "../../Inputs/Carousel/Carousel";
+import CheckBoxRadial from "../../Inputs/CheckBoxRadial/CheckBoxRadial";
+import CheckBoxSquareItem from "../../Inputs/CheckBoxSquare/CheckBoxSquareItem/CheckBoxSquareItem";
+import Text from "../../Inputs/Text/Text";
 import { useFormContext } from "react-hook-form";
-import usePaniniStore from "../../stores/usePaniniStore";
+import usePaniniStore from "../../../stores/usePaniniStore";
 
 interface Props {
   title: string;
@@ -15,7 +15,7 @@ interface Props {
   align?: "center" | "start";
 }
 
-function FormItemSingleChoose({ title, name, options, type, align = "center" }: Props) {
+function SingleChoiceField({ title, name, options, type, align = "center" }: Props) {
   const { errors, reset } = usePaniniStore();
   const { getValues, setValue } = useFormContext();
   const [actValue, setActValue] = useState<string | null | boolean>(getValues(name));
@@ -69,4 +69,4 @@ function FormItemSingleChoose({ title, name, options, type, align = "center" }: 
   );
 }
 
-export default FormItemSingleChoose;
+export default SingleChoiceField;

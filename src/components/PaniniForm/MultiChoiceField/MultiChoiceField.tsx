@@ -1,14 +1,14 @@
 import React, { useState, useEffect } from "react";
-import styles from "./FormItemMultipleChoose.module.css";
-import Carousel from "../Inputs/Carousel/Carousel";
-import DropDown from "../Inputs/DropDown/DropDown";
-import MultiSelect from "../Inputs/MultiSelect/MultiSelect";
-import Switch from "../SettingElements/Switch/Switch";
-import AddButton from "../SettingElements/AddButton/AddButton";
-import DeleteButton from "../SettingElements/DeleteButton/DeleteButton";
-import CheckBoxSquare from "../Inputs/CheckBoxSquare/CheckBoxSquare";
+import styles from "./MultiChoiceField.module.css";
+import Carousel from "../../Inputs/Carousel/Carousel";
+import DropDown from "../../Inputs/DropDown/DropDown";
+import MultiSelect from "../../Inputs/MultiSelect/MultiSelect";
+import Switch from "../../SettingElements/Switch/Switch";
+import AddButton from "../../SettingElements/AddButton/AddButton";
+import DeleteButton from "../../SettingElements/DeleteButton/DeleteButton";
+import CheckBoxSquare from "../../Inputs/CheckBoxSquare/CheckBoxSquare";
 import { useFormContext } from "react-hook-form";
-import usePaniniStore from "../../stores/usePaniniStore";
+import usePaniniStore from "../../../stores/usePaniniStore";
 
 interface Props {
   title: string;
@@ -19,7 +19,7 @@ interface Props {
   zIndex?: number;
 }
 
-function FormItemMultipleChoose({ title, name, options, type, withSettings = true, zIndex = 100 }: Props) {
+function MultiChoiceField({ title, name, options, type, withSettings = true, zIndex = 100 }: Props) {
   const { errors, reset } = usePaniniStore();
   const { getValues, setValue } = useFormContext();
   const [switchValue, setSwitchValue] = useState<boolean>(true);
@@ -138,4 +138,4 @@ function FormItemMultipleChoose({ title, name, options, type, withSettings = tru
   );
 }
 
-export default FormItemMultipleChoose;
+export default MultiChoiceField;

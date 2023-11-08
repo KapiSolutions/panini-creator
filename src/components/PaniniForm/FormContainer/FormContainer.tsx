@@ -1,9 +1,9 @@
 import React, { useEffect, useState } from "react";
 import styles from "./FormContainer.module.css";
-import usePaniniStore from "../../stores/usePaniniStore";
-import { config } from "../../config/config";
+import usePaniniStore from "../../../stores/usePaniniStore";
+import { config } from "../../../config/config";
 import { useForm, FormProvider } from "react-hook-form";
-import { defaultPanini } from "../../schema/paniniSchema";
+import { defaultPanini } from "../../../schema/paniniSchema";
 
 type Props = {
   children: React.ReactNode;
