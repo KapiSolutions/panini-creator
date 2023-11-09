@@ -3,12 +3,11 @@ import App from "../../src/App";
 import { render, screen, waitFor } from "@testing-library/react";
 import userEvent from "@testing-library/user-event";
 import { beforeEach, describe, it, expect, vi } from "vitest";
-import { config } from "../../src/config/config";
 import { changeFormData } from "./formSubmit";
 import { APIRequest } from "../utils/api";
 import { schema } from "../../src/schema/paniniSchema";
 import createFetchMock from "vitest-fetch-mock";
-import { getFormData } from "../utils/helpers";
+import { getFormData, startPaniniConfiguration } from "../utils/helpers";
 
 const fetchMock = createFetchMock(vi);
 
@@ -21,15 +20,7 @@ describe("Test form submitting", () => {
   it("Start panini configuration and change default values of each form element ", async () => {
     render(<App />);
     // Start panini configuration
-    const startButton = screen.getByTestId("splash-screen-button");
-    expect(startButton).toBeInTheDocument();
-    await userEvent.click(startButton);
-    await waitFor(
-      () => {
-        expect(startButton).not.toBeInTheDocument();
-      },
-      { timeout: config.animationTime }
-    );
+    await startPaniniConfiguration()
     // Change value of each form element
     await changeFormData();
   });
