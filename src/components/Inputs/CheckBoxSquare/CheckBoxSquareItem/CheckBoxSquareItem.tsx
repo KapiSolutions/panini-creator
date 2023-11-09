@@ -21,6 +21,7 @@ function CheckBoxSquareItem({ name, option, value, onClick }: Props): React.Reac
           typeof value === "string" ? value.includes(option) && styles.active : value && styles.active
         }`}
         data-testid={`${name}-checkbox`}
+        data-testvalue={option}
       />
     </div>
   );
