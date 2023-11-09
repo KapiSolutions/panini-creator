@@ -53,7 +53,7 @@ h2 {
 .primaryButton:disabled {
   text-decoration: none;
   cursor: default;
-  opacity: 0.8;
+  opacity: 0.9;
   pointer-events: none;
 }
 
@@ -75,6 +75,16 @@ h2 {
   pointer-events: none;
 }
 
+.shadowContainer {
+  position: absolute;
+  top:0px;
+  left: 0px;
+  width: 100vw;
+  height: 100%;
+  background-color: #0000000c;
+  z-index: 200;
+}
+
 .spinner {
   border: 1px solid #ffffff;
   border-radius: 50%;
@@ -85,6 +95,10 @@ h2 {
 }
 
 @keyframes spin {
-  0% { transform: rotate(0deg); }
-  100% { transform: rotate(360deg); }
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(360deg);
+  }
 }

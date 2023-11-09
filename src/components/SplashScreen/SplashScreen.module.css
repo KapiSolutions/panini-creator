@@ -27,7 +27,7 @@
 h1 {
   margin: 0;
 }
-.btn {
+.button {
   display: flex;
   justify-content: center;
   align-items: center;
@@ -36,12 +36,19 @@ h1 {
   margin: 0;
   text-transform: uppercase;
   cursor: default;
-  border: 0.5px solid transparent;
   transition: border 0.5s ease-in-out;
+  font-family: "Oxygen Mono";
+  font-size: 12px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: normal;
+  background: none;
 }
 
-.btn:hover {
-  border: 0.5px solid #000000;
+.button:disabled {
+  pointer-events: none;
+  color: #000;
+  opacity: 0.9;
 }
 
 .circle {

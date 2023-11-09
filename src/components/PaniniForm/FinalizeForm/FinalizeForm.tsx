@@ -118,6 +118,7 @@ function FinalizeForm() {
           Start again
         </button>
       </div>
+      {loading && <div className={styles.shadowContainer} />}
     </div>
   );
 }
