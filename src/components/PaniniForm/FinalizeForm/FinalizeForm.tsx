@@ -102,7 +102,7 @@ function FinalizeForm() {
         >
           {loading ? "Processing..." : "Place order"}
         </button>
-        <button className={styles.secondaryButton} onClick={handleStartAgain}>
+        <button className={styles.secondaryButton} onClick={handleStartAgain} data-testid="reset-form">
           Start again
         </button>
       </div>
