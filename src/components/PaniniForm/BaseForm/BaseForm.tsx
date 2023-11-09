@@ -18,10 +18,10 @@ function BaseForm() {
       <SingleChoiceField title="Bread" name="base.bread" type="carousel" options={[...breadVariants]} />
 
       <Separator />
-      <MultiChoiceField title="Cheese" name="base.cheese" type="dropdown" options={[...cheeseVariants]} />
+      <MultiChoiceField title="Cheese" name="base.cheese" type="dropdown" options={[...cheeseVariants]} zIndex={150} />
 
       <Separator />
-      <MultiChoiceField title="Meat" name="base.meat" type="dropdown" options={[...meatVariants]} zIndex={50} />
+      <MultiChoiceField title="Meat" name="base.meat" type="dropdown" options={[...meatVariants]} zIndex={100} />
 
       <Separator />
       <MultiChoiceField title="Dressing" name="base.dressing" type="carousel" options={[...dressingVariants]} />

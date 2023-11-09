@@ -19,7 +19,7 @@ interface Props {
   zIndex?: number;
 }
 
-function MultiChoiceField({ title, name, options, type, withSettings = true, zIndex = 100 }: Props) {
+function MultiChoiceField({ title, name, options, type, withSettings = true, zIndex = 50 }: Props) {
   const { errors, reset } = usePaniniStore();
   const { getValues, setValue } = useFormContext();
   const [switchValue, setSwitchValue] = useState<boolean>(true);
@@ -53,12 +53,17 @@ function MultiChoiceField({ title, name, options, type, withSettings = true, zIn
     switch (type) {
       case "carousel":
         return (
-          <Carousel
-            name={name}
-            options={options}
-            value={getValues(name)[index]}
-            setValue={(newValue) => updateValue(newValue, index)}
-          />
+          <div className={styles.carouselContainer} style={{ marginTop: index > 0 ? "3px" : "0px" }}>
+            {index > 0 && <div className={styles.separator} />}
+            <div style={{ marginTop: index > 0 ? "3px" : "0px" }}>
+              <Carousel
+                name={name}
+                options={options}
+                value={getValues(name)[index]}
+                setValue={(newValue) => updateValue(newValue, index)}
+              />
+            </div>
+          </div>
         );
       case "dropdown":
         return (
