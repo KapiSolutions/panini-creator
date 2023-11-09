@@ -1,10 +1,9 @@
 import React from "react";
 import App from "../../src/App";
-import { render, screen, waitFor } from "@testing-library/react";
+import { render, screen } from "@testing-library/react";
 import userEvent from "@testing-library/user-event";
 import { describe, it, expect } from "vitest";
-import { config } from "../../src/config/config";
-import { getFormData, objectsEqual } from "../utils/helpers";
+import { getFormData, objectsEqual, startPaniniConfiguration } from "../utils/helpers";
 import { defaultPanini } from "../../src/schema/paniniSchema";
 
 describe("Test reset form", () => {
@@ -14,15 +13,8 @@ describe("Test reset form", () => {
     window.HTMLElement.prototype.scrollIntoView = function () {};
 
     // #1 Start panini configuration
-    const startButton = screen.getByTestId("splash-screen-button");
-    expect(startButton).toBeInTheDocument();
-    await userEvent.click(startButton);
-    await waitFor(
-      () => {
-        expect(startButton).not.toBeInTheDocument();
-      },
-      { timeout: config.animationTime }
-    );
+    await startPaniniConfiguration();
+    
     // #2 Check if init form values are equal to default values
     const initData = await getFormData();
     expect(objectsEqual(initData, defaultPanini)).toBeTruthy();
