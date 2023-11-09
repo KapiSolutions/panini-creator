@@ -4,10 +4,11 @@ import { render, screen, waitFor } from "@testing-library/react";
 import userEvent from "@testing-library/user-event";
 import { beforeEach, describe, it, expect, vi } from "vitest";
 import { config } from "../../src/config/config";
-import { changeFormData, getFormData } from "./formSubmit";
+import { changeFormData } from "./formSubmit";
 import { APIRequest } from "../utils/api";
 import { schema } from "../../src/schema/paniniSchema";
 import createFetchMock from "vitest-fetch-mock";
+import { getFormData } from "../utils/helpers";
 
 const fetchMock = createFetchMock(vi);
 
