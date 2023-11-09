@@ -100,9 +100,21 @@ function FinalizeForm() {
           disabled={loading}
           data-testid="place-order"
         >
-          {loading ? "Processing..." : "Place order"}
+          {loading ? (
+            <>
+              <span className={styles.spinner} />
+              Processing...
+            </>
+          ) : (
+            "Place order"
+          )}
         </button>
-        <button className={styles.secondaryButton} onClick={handleStartAgain} data-testid="reset-form">
+        <button
+          className={styles.secondaryButton}
+          onClick={handleStartAgain}
+          disabled={loading}
+          data-testid="reset-form"
+        >
           Start again
         </button>
       </div>
