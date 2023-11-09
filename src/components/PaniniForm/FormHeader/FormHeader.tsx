@@ -18,7 +18,7 @@ function FormHeader(): React.ReactElement {
   return (
     <div className={styles.container}>
       <h1>Panini Creator</h1>
-      <button>
+      <button data-testid="randomize-button" onClick={handleRandomize}>
         <div className={styles.iconsContainer}>
           <span className={styles.diceOne}>
             <DiceOne />
@@ -27,7 +27,7 @@ function FormHeader(): React.ReactElement {
             <DiceTwo />
           </span>
         </div>
-        <span onClick={handleRandomize}>Randomize Panini</span>
+        <span>Randomize Panini</span>
       </button>
     </div>
   );
