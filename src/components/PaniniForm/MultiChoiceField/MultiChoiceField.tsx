@@ -54,6 +54,7 @@ function MultiChoiceField({ title, name, options, type, withSettings = true, zIn
       case "carousel":
         return (
           <Carousel
+            name={name}
             options={options}
             value={getValues(name)[index]}
             setValue={(newValue) => updateValue(newValue, index)}
@@ -62,6 +63,7 @@ function MultiChoiceField({ title, name, options, type, withSettings = true, zIn
       case "dropdown":
         return (
           <DropDown
+            name={name}
             options={options}
             zIndex={zIndex}
             value={getValues(name)[index]}
@@ -71,6 +73,7 @@ function MultiChoiceField({ title, name, options, type, withSettings = true, zIn
       case "checkbox":
         return (
           <CheckBoxSquare
+            name={name}
             options={options}
             value={getValues(name)}
             setValue={(value) => {
@@ -82,6 +85,7 @@ function MultiChoiceField({ title, name, options, type, withSettings = true, zIn
       case "multiselect":
         return (
           <MultiSelect
+            name={name}
             options={options}
             value={getValues(name)}
             setValue={(value) => {

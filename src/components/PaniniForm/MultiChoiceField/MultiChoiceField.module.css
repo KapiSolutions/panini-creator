@@ -13,14 +13,14 @@
   justify-content: center;
   margin-top: 0px;
   margin-bottom: auto;
+}
 
-  p {
-    font-family: "Instrument Serif";
-    font-size: 18px;
-    font-style: normal;
-    font-weight: 400;
-    line-height: normal;
-  }
+.title p {
+  font-family: "Instrument Serif";
+  font-size: 18px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: normal;
 }
 
 .inputsContainer {

@@ -33,21 +33,34 @@ function SingleChoiceField({ title, name, options, type, align = "center" }: Pro
   const getInputField = () => {
     switch (type) {
       case "carousel":
-        return <Carousel options={options ? options : []} value={getValues(name) as string} setValue={updateValue} />;
+        return (
+          <Carousel
+            name={name}
+            options={options ? options : []}
+            value={getValues(name) as string}
+            setValue={updateValue}
+          />
+        );
       case "radialSelect":
         return (
-          <CheckBoxRadial options={options ? options : []} value={getValues(name) as string} setValue={updateValue} />
+          <CheckBoxRadial
+            name={name}
+            options={options ? options : []}
+            value={getValues(name) as string}
+            setValue={updateValue}
+          />
         );
       case "squareSelect":
         return (
           <CheckBoxSquareItem
+            name={name}
             option={options ? options[0] : "Add to order"} //there is no options for cutlery and napkins, and there is boolean value for them
             value={getValues(name) as string}
             onClick={() => updateValue(options ? (getValues(name) ? null : options[0]) : !getValues(name))}
           />
         );
       case "text":
-        return <Text value={getValues(name) as string} setValue={updateValue} />;
+        return <Text name={name} value={getValues(name) as string} setValue={updateValue} />;
       default:
         return "Input type is not supported";
     }

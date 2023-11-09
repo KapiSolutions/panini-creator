@@ -4,8 +4,8 @@
   background: url("../../../assets/deleteButton/Delete.svg") no-repeat;
   background-size: cover;
   cursor: pointer;
+}
 
-  &:hover {
-    background: url("../../../assets/deleteButton/DeleteHover.svg") no-repeat;
-  }
+.button:hover {
+  background: url("../../../assets/deleteButton/DeleteHover.svg") no-repeat;
 }

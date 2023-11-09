@@ -19,6 +19,6 @@ span {
   background-size: cover;
 }
 
-.checked {
+.active {
   background: url("../../../../assets/squareCheckBox/squareCheckBoxOn.svg") no-repeat;
 }

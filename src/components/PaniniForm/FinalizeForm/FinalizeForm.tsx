@@ -43,7 +43,6 @@ function FinalizeForm() {
       setTimeout(() => {
         downloadImage(res.data.imageUrl, "ordered_panini.jpg");
       }, config.animationTime);
-
     } catch (error) {
       if (error instanceof z.ZodError) {
         const validationErrors: z.ZodIssue[] = error.issues;
@@ -95,7 +94,12 @@ function FinalizeForm() {
 
       <Separator />
       <div className={styles.buttonsContainer}>
-        <button className={styles.primaryButton} onClick={handlePlaceOrder} disabled={loading}>
+        <button
+          className={styles.primaryButton}
+          onClick={handlePlaceOrder}
+          disabled={loading}
+          data-testid="place-order"
+        >
           {loading ? "Processing..." : "Place order"}
         </button>
         <button className={styles.secondaryButton} onClick={handleStartAgain}>

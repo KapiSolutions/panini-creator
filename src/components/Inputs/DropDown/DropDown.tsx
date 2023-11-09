@@ -3,18 +3,19 @@ import styles from "./DropDown.module.css";
 import ArrowDown from "../../Icons/ArrowDown";
 
 interface Props {
+  name: string;
   options: Array<string>;
   value: string;
   setValue: (value: string) => void;
   zIndex?: number;
 }
 
-function DropDown({ options, value, setValue, zIndex = 9 }: Props) {
+function DropDown({ name, options, value, setValue, zIndex = 9 }: Props) {
   const [showItems, setShowItems] = useState<boolean>(false);
 
   return (
     <div className={styles.container} style={{ zIndex: zIndex }} onClick={() => setShowItems(!showItems)}>
-      {value}
+      <span data-testid={`${name}`}>{value}</span>
       <div className={`${styles.arrow} ${showItems && styles.rotate}`}>
         <ArrowDown />
       </div>
@@ -22,7 +23,12 @@ function DropDown({ options, value, setValue, zIndex = 9 }: Props) {
         {options
           .filter((option) => option != value)
           .map((option, idx) => (
-            <div key={idx} className={styles.item} onClick={() => setValue(option)}>
+            <div
+              key={idx}
+              className={styles.item}
+              onClick={() => setValue(option)}
+              data-testid={`${name}-${idx}`}
+            >
               {option}
             </div>
           ))}

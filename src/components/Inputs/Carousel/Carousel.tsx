@@ -6,12 +6,13 @@ import Grain from "../../Icons/Grain";
 import Wheat from "../../Icons/Wheat";
 
 interface Props {
+  name: string;
   options: Array<string>;
   value: string;
   setValue: (value: string) => void;
 }
 
-function Carousel({ options, value, setValue }: Props): React.ReactElement {
+function Carousel({ name, options, value, setValue }: Props): React.ReactElement {
   const previousValue = () => {
     const idx = options.indexOf(value) - 1;
     const length = options.length;
@@ -25,8 +26,8 @@ function Carousel({ options, value, setValue }: Props): React.ReactElement {
     setValue(options[newIndex]);
   };
   return (
-    <div className={styles.container}>
-      <span onClick={previousValue}>
+    <div className={styles.container} data-testid={`${name}`}>
+      <span onClick={previousValue} data-testid={`${name}-arrow`}>
         <ArrowRight />
       </span>
       <div className={styles.item}>

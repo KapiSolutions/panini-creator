@@ -11,14 +11,14 @@
   display: flex;
   align-items: center;
   justify-content: center;
+}
 
-  p {
-    font-family: "Instrument Serif";
-    font-size: 18px;
-    font-style: normal;
-    font-weight: 400;
-    line-height: normal;
-  }
+.title p {
+  font-family: "Instrument Serif";
+  font-size: 18px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: normal;
 }
 
 .inputsContainer {
@@ -43,7 +43,7 @@
   margin-top: 54px;
   height: 40px; */
   min-width: 330px;
-  margin-top:4px;
+  margin-top: 4px;
   max-width: 467px;
   text-align: left;
   font-family: "Oxygen Mono";

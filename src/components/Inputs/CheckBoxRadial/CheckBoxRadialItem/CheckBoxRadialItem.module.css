@@ -18,6 +18,6 @@ span {
   background-size: cover;
 }
 
-.checked {
+.active {
   background: url("../../../../assets/radialCheckBox/radialCheckBoxOn.svg") no-repeat;
 }

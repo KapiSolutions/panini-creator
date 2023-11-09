@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React from "react";
 import styles from "./SelectItem.module.css";
 
 interface Props {
@@ -9,7 +9,7 @@ interface Props {
 
 function SelectItem({ option, value, onClick }: Props): React.ReactElement {
   return (
-    <div className={`${styles.container} ${value.includes(option) && styles.active}`} onClick={() => onClick()}>
+    <div className={`${styles.container} ${value.includes(option) ? styles.active : ""}`} onClick={() => onClick()}>
       {option}
     </div>
   );
