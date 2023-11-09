@@ -1,5 +1,21 @@
-import { screen } from "@testing-library/react";
 import type { SandwichPayload } from "../../src/types/types";
+import { config } from "../../src/config/config";
+import { expect } from "vitest";
+import { screen, waitFor } from "@testing-library/react";
+import userEvent from "@testing-library/user-event";
+
+// Start panini configuration
+export const startPaniniConfiguration = async () => {
+  const startButton = screen.getByTestId("splash-screen-button");
+  expect(startButton).toBeInTheDocument();
+  await userEvent.click(startButton);
+  await waitFor(
+    () => {
+      expect(startButton).not.toBeInTheDocument();
+    },
+    { timeout: config.animationTime }
+  );
+};
 
 // Get form data
 export const getFormData = async (): Promise<SandwichPayload> => {
