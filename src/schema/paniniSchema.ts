@@ -34,8 +34,20 @@ export const randomPanini = (): SandwichPayload => {
     const randomIndex = Math.floor(Math.random() * arr.length);
     return arr[randomIndex];
   };
+  const randomPaniniNames = [
+    "Mouthwatering Melt",
+    "Savory Stack",
+    "Cheesy Delight",
+    "Grilled Goodness",
+    "Tasty Tower",
+    "Panini Paradise",
+    "Crispy Creation",
+    "Flavorful Feast",
+    "Gourmet Griller",
+    "Hearty Heaven",
+  ];
   return {
-    sandwichName: "",
+    sandwichName: randomElementArray(randomPaniniNames),
     cutlery: Math.random() < 0.5,
     napkins: Math.random() < 0.5,
     base: {
