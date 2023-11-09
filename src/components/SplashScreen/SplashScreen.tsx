@@ -4,7 +4,7 @@ import usePaniniStore from "../../stores/usePaniniStore";
 import { config } from "../../config/config";
 
 function SplashScreen(): ReactElement {
-  const [isBtnClicked, setBtnClicked] = useState<Boolean>(false);
+  const [isBtnClicked, setBtnClicked] = useState<boolean>(false);
   const { paniniStatus, setPaniniStatus } = usePaniniStore();
 
   useEffect(() => {
@@ -13,6 +13,7 @@ function SplashScreen(): ReactElement {
     if (isBtnClicked) {
       timeout = setTimeout(() => {
         setPaniniStatus("started");
+        setBtnClicked(false);
       }, config.animationTime);
     }
 
@@ -32,9 +33,9 @@ function SplashScreen(): ReactElement {
       {/* Header */}
       <div className={styles.header}>
         <h1>{paniniStatus === "completed" ? "Panini ordered" : "Panini Creator"}</h1>
-        <small className={styles.btn} onClick={() => setBtnClicked(!isBtnClicked)} data-testid="splash-screen-button">
+        <button className={styles.button} onClick={() => setBtnClicked(true)} data-testid="splash-screen-button" disabled={isBtnClicked}>
           {paniniStatus === "completed" ? "Start again" : "Begin"}
-        </small>
+        </button>
       </div>
 
       {/* Circles: left and top */}
