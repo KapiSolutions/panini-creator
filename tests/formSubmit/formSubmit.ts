@@ -3,7 +3,7 @@ import { screen } from "@testing-library/react";
 import userEvent from "@testing-library/user-event";
 import type { SandwichPayload } from "../../src/types/types";
 
-export const carouselChangeValue = async (name: string) => {
+const carouselChangeValue = async (name: string) => {
   const element = screen.getByTestId(`${name}`);
   const arrowAction = screen.getByTestId(`${name}-arrow`);
   const valueBefore = element.textContent;
@@ -15,7 +15,7 @@ export const carouselChangeValue = async (name: string) => {
   expect(valueBefore).not.toBe(valueAfter);
 };
 
-export const dropdownChangeValue = async (name: string) => {
+const dropdownChangeValue = async (name: string) => {
   const element = screen.getByTestId(`${name}`);
   const valueBefore = element.textContent;
   expect(valueBefore).not.toEqual("");
@@ -28,7 +28,7 @@ export const dropdownChangeValue = async (name: string) => {
   expect(valueBefore).not.toBe(valueAfter);
 };
 
-export const multiselectChangeValue = async (name: string, selector: string) => {
+const multiselectChangeValue = async (name: string, selector: string) => {
   // #1 Get all options within options container
   const optionsContainer = screen.getByTestId(name);
   const options = optionsContainer.querySelectorAll(selector);
@@ -48,7 +48,7 @@ export const multiselectChangeValue = async (name: string, selector: string) => 
   expect(selectedAfter.length).toBe(1);
 };
 
-export const radialSelectChangeValue = async (name: string) => {
+const radialSelectChangeValue = async (name: string) => {
   // #1 Get all options within options container
   const optionsContainer = screen.getByTestId(name);
   const options = optionsContainer.querySelectorAll("[class*='checkbox']");
@@ -69,7 +69,7 @@ export const radialSelectChangeValue = async (name: string) => {
   expect(selectedBefore[0].getAttribute("data-testid")).not.toBe(selectedAfter[0].getAttribute("data-testid"));
 };
 
-export const singleCheckboxChangeValue = async (name: string) => {
+const singleCheckboxChangeValue = async (name: string) => {
   const element = screen.getByTestId(`${name}-checkbox`);
   const valueBefore = element.className.includes("active");
   expect(valueBefore).toBe(false);
@@ -79,7 +79,7 @@ export const singleCheckboxChangeValue = async (name: string) => {
   expect(valueAfter).toBe(true);
 };
 
-export const textChangeValue = async (name: string) => {
+const textChangeValue = async (name: string) => {
   const element = screen.getByTestId(`${name}`) as HTMLInputElement;
   const valueBefore = element.value;
   expect(valueBefore).toBe("");
