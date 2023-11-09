@@ -32,7 +32,7 @@ function SplashScreen(): ReactElement {
       {/* Header */}
       <div className={styles.header}>
         <h1>{paniniStatus === "completed" ? "Panini ordered" : "Panini Creator"}</h1>
-        <small className={styles.btn} onClick={() => setBtnClicked(!isBtnClicked)}>
+        <small className={styles.btn} onClick={() => setBtnClicked(!isBtnClicked)} data-testid="splash-screen-button">
           {paniniStatus === "completed" ? "Start again" : "Begin"}
         </small>
       </div>
