@@ -19,16 +19,12 @@ function DropDown({ name, options, value, setValue, zIndex = 9 }: Props) {
       <div className={`${styles.arrow} ${showItems && styles.rotate}`}>
         <ArrowDown />
       </div>
-      <div className={styles.itemsContainer} style={showItems ? { display: "flex" } : { display: "none" }}>
+
+      <div className={styles.itemsContainer} style={{ display: showItems ? "flex" : "none" }}>
         {options
           .filter((option) => option != value)
           .map((option, idx) => (
-            <div
-              key={idx}
-              className={styles.item}
-              onClick={() => setValue(option)}
-              data-testid={`${name}-${idx}`}
-            >
+            <div key={idx} className={styles.item} onClick={() => setValue(option)} data-testid={`${name}-${idx}`}>
               {option}
             </div>
           ))}
