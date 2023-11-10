@@ -54,7 +54,7 @@ function SingleChoiceField({ title, name, options, type, align = "center" }: Pro
         return (
           <CheckBoxSquareItem
             name={name}
-            option={options ? options[0] : "Add to order"} //there is no options for cutlery and napkins, and there is boolean value for them
+            option={options ? options[0] : "ADD TO ORDER"} //there is no options for cutlery and napkins, and there is boolean value for them
             value={getValues(name) as string}
             onClick={() => updateValue(options ? (getValues(name) ? null : options[0]) : !getValues(name))}
           />
