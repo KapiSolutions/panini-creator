@@ -25,6 +25,7 @@ function Carousel({ name, options, value, setValue }: Props): React.ReactElement
     const newIndex = idx <= length ? idx : 0;
     setValue(options[newIndex]);
   };
+
   return (
     <div className={styles.container} data-testid={`${name}`}>
       <span onClick={previousValue} data-testid={`${name}-arrow`}>
@@ -33,8 +34,7 @@ function Carousel({ name, options, value, setValue }: Props): React.ReactElement
       <div className={styles.item}>
         {value === "WHEAT" && <Wheat />}
         {value === "FULL GRAIN" && <Grain />}
-
-        <span>{value}</span>
+        <span>{value.replace("_", " ")}</span>
       </div>
       <span onClick={nextValue}>
         <ArrowLeft />

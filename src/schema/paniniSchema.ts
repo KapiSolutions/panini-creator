@@ -30,9 +30,15 @@ export const defaultPanini: SandwichPayload = {
 };
 
 export const randomPanini = (): SandwichPayload => {
-  const randomElementArray = (arr: Array<string>) => {
-    const randomIndex = Math.floor(Math.random() * arr.length);
-    return arr[randomIndex];
+  const randomElementArray = (arr: Array<string>, multipleItems = false) => {
+    if (multipleItems) {
+      const randomLength = Math.floor(Math.random() * arr.length) + 1; // Random number of elements between 1 and length of arr
+      const shuffledArray = arr.slice().sort(() => Math.random() - 0.5); // Shuffled copy of the input array
+      return shuffledArray.slice(0, randomLength);
+    } else {
+      const randomIndex = Math.floor(Math.random() * arr.length);
+      return arr[randomIndex];
+    }
   };
   const randomPaniniNames = [
     "Mouthwatering Melt",
@@ -47,18 +53,18 @@ export const randomPanini = (): SandwichPayload => {
     "Hearty Heaven",
   ];
   return {
-    sandwichName: randomElementArray(randomPaniniNames),
+    sandwichName: randomElementArray(randomPaniniNames) as string,
     cutlery: Math.random() < 0.5,
     napkins: Math.random() < 0.5,
     base: {
       bread: randomElementArray([...breadVariants]) as SandwichPayload["base"]["bread"],
-      cheese: [randomElementArray([...cheeseVariants])] as SandwichPayload["base"]["cheese"],
-      meat: [randomElementArray([...meatVariants])] as SandwichPayload["base"]["meat"],
-      dressing: [randomElementArray([...dressingVariants])] as SandwichPayload["base"]["dressing"],
-      vegetables: [randomElementArray([...vegetableVariant])] as SandwichPayload["base"]["vegetables"],
+      cheese: randomElementArray([...cheeseVariants], true) as SandwichPayload["base"]["cheese"],
+      meat: randomElementArray([...meatVariants], true) as SandwichPayload["base"]["meat"],
+      dressing: randomElementArray([...dressingVariants], true) as SandwichPayload["base"]["dressing"],
+      vegetables: randomElementArray([...vegetableVariant], true) as SandwichPayload["base"]["vegetables"],
     },
     extras: {
-      egg: [randomElementArray([...eggVariants])] as SandwichPayload["extras"]["egg"],
+      egg: randomElementArray([...eggVariants], true) as SandwichPayload["extras"]["egg"],
       spreads: [randomElementArray([...spreadVariant])] as SandwichPayload["extras"]["spreads"],
       serving: randomElementArray([...servingVariant]) as SandwichPayload["extras"]["serving"],
       topping: Math.random() < 0.5 ? "SESAME" : null,
