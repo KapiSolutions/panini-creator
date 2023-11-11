@@ -53,4 +53,10 @@
   .container {
     width: 200px;
   }
+  .item {
+    width: 200px;
+  }
+  .itemsContainer{
+    left: -1px;
+  }
 }
