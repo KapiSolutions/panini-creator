@@ -44,14 +44,21 @@ button {
   transition: transform 0.5s;
 }
 
-button:hover{
-  box-shadow:inset 0px 0px 0px 1px #000;
+button:hover {
+  box-shadow: inset 0px 0px 0px 1px #000;
 }
 
 button:hover .diceOne {
-  transform: translate(1px,-6px) rotate(50deg);
+  transform: translate(1px, -6px) rotate(50deg);
 }
 
 button:hover .diceTwo {
-  transform: translate(5px,6px) rotate(-65deg);
+  transform: translate(5px, 6px) rotate(-65deg);
+}
+
+@media only screen and (max-width: 768px) {
+  .container {
+    flex-direction: column;
+    padding-top: 20px;
+  }
 }

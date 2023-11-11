@@ -21,3 +21,9 @@ span {
 .active {
   background: url("../../../../assets/radialCheckBox/radialCheckBoxOn.svg") no-repeat;
 }
+
+@media only screen and (max-width: 768px) {
+  .option {
+    gap: 10px;
+  }
+}

@@ -53,3 +53,12 @@
   line-height: normal;
   cursor: default;
 }
+
+@media only screen and (max-width: 768px) {
+  .error {
+    min-width: auto;
+    max-width: 200px;
+    width: 100%;
+  }
+}
+

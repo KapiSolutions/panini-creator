@@ -1,6 +1,13 @@
 .container {
-  display: inline-flex;
+  display: flex;
   text-align: right;
   gap: 29px;
   cursor: pointer;
+}
+
+@media only screen and (max-width: 768px) {
+  .container {
+    flex-wrap: wrap;
+    gap: 20px;
+  }
 }

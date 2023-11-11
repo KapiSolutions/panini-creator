@@ -104,7 +104,7 @@ function MultiChoiceField({ title, name, options, type, withSettings = true, zIn
     }
   };
   return (
-    <div className={styles.container}>
+    <div className={styles.container} style={title === "Vegetables" ? {minHeight: "180px"}: {}}>
       <div className={styles.title}>
         <p>{title}</p>
       </div>
