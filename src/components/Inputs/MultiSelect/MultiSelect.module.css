@@ -1,9 +1,17 @@
-.container{
-    width: 350px;
-    display: flex;
-    flex-wrap: wrap;
-    align-items: center;
-    justify-content: end;
-    row-gap: 15px;
-    column-gap: 8px;
+.container {
+  width: 350px;
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: end;
+  row-gap: 15px;
+  column-gap: 8px;
+}
+
+@media only screen and (max-width: 768px) {
+  .container {
+    width: 100%;
+    position: absolute;
+    top: 40px;
+  }
 }

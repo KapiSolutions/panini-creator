@@ -52,8 +52,8 @@
   font-weight: 400;
   line-height: normal;
 }
-.carouselContainer{
-  position:relative;
+.carouselContainer {
+  position: relative;
   display: flex;
   justify-content: center;
 }
@@ -62,4 +62,14 @@
   top: -7.5px;
   width: 60px;
   border-top: 0.5px solid #000;
+}
+
+@media only screen and (max-width: 768px) {
+  .inputsContainer {
+    column-gap: 10px;
+  }
+  .inputContainer {
+    min-width: auto;
+    gap: 12px;
+  }
 }
